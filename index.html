@@ -35,11 +35,11 @@
             image.fillRect(50,150,1400,750);
             
     //PICTURES
-    //  var group1=new Image();    
-    // group1.src='images/group1.jpg'
-    // group1.onload = function () {    
-    // image.drawImage(group1,50,1525);
-    //  }    
+     var group1=new Image();    
+    group1.src='images/group1.jpg'
+    group1.onload = function () {    
+    image.drawImage(group1,50,1525);
+     }    
     
      var group2=new Image();    
     group2.src='images/group2.jpg'
@@ -258,7 +258,7 @@ popupWindow.document.close();
 
 <!--        the house is button-->
         <div id = 'd1' style = "position: absolute; left:405px; top:270px; z-index: 4">
-            <button><a href="JavaScript:newPopupOne('http://www.google.com');" style = "position: absolute;left:160px;top:200px; color:gray;">             <img src = "house.jpg"/></a></button> 
+            <button type= "button"> <a href="javascript:newPopupOne('http://www.google.com');" style = "position: absolute;left:160px;top:200px; color:gray;">             <img src = "house.jpg"/> </a></button> 
         </div>
         
 <!--        the whale is button-->
