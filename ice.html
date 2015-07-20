@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Save Dave - Ice Puzzle</title>
+        <link rel="stylesheet" type="text/css" href="SLCSS.css">
+    </head>
+    <body>
+        
+        <div class = "container" position: relative>
+            <canvas id = "myCanvas" width = "900" height = "600" style = "border: 1px solid #ADD8E6"></canvas>
+            <canvas id = "bCanvas" width = "900" height = "600" style = "border: 1px solid #ADD8E6"></canvas>
+        </div>
+        
+        <script>
+            var Timer;
+            var TotalSeconds;
+            var TimeStr = LeadingZero(TotalSeconds);
+            var numberOfSeconds;
+            
+            if(parseInt(localStorage.getItem('points')) < 300){
+                numberOfSeconds = 20;   
+            }
+            
+            else if(parseInt(localStorage.getItem('points')) >= 300 && parseInt(localStorage.getItem('points')) < 600 ){
+                numberOfSeconds = 15;   
+            }
+            
+            else if(parseInt(localStorage.getItem('points')) >= 600 && parseInt(localStorage.getItem('points')) < 900 ){
+                numberOfSeconds = 10;   
+            }
+            
+            else if(parseInt(localStorage.getItem('points')) >= 900){
+                numberOfSeconds = 5;   
+            }
+
+            
+            function CreateTimer(TimerID, Time) {
+                Timer = document.getElementById(TimerID);
+                TotalSeconds = Time;
+                UpdateTimer()
+                window.setTimeout("Tick()", 1000);
+            }
+
+            function Tick() {
+                TotalSeconds -= 1;
+                UpdateTimer()
+                window.setTimeout("Tick()", 1000);
+            }
+
+            function UpdateTimer() {
+                Timer.innerHTML = TotalSeconds;
+                if(TotalSeconds == 0){
+                window.location.replace("file:///Users/loaner/Desktop/death.html");    
+                }   
+            }
+            
+            function LeadingZero(Time) {
+                return (Time < 10) ? "0" + Time : + Time;
+            }
+
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+            var b = document.getElementById("bCanvas");
+            var btx = b.getContext("2d");
+            
+            ctx.fillStyle = "#ADD8E6";
+            ctx.fillRect(0,0,900,600);
+            
+            //ice
+            var ice1 = new Image();
+            ice1.src = 'file:///Users/loaner/Desktop/ice1.png';
+            ice1.onload = function () {
+                ctx.drawImage(ice1, 40, 109);
+            }
+            var bear = new Image();
+            bear.src = 'file:///Users/loaner/Desktop/bear.png';
+            bear.onload = function () {
+                btx.drawImage(bear, 43, 150);
+            }
+            var seal = new Image();
+            seal.src = 'file:///Users/loaner/Desktop/seal.png';
+            seal.onload = function () {
+                ctx.drawImage(seal, 680, 460);
+            }
+            var afish = new Image();
+            afish.src = 'file:///Users/loaner/Desktop/afish.png';
+            afish.onload = function () {
+                btx.drawImage(afish, 43, 400);
+            }
+            var afish2 = new Image();
+            afish2.src = 'file:///Users/loaner/Desktop/afish.png';
+            afish2.onload = function () {
+                btx.drawImage(afish2, 70, 480);
+            }
+            var afish2 = new Image();
+            afish2.src = 'file:///Users/loaner/Desktop/afish.png';
+            afish2.onload = function () {
+                btx.drawImage(afish2, 140, 430);
+            }
+    
+            //drag&drop
+            var count;
+            count = 0;
+            function allowDrop(event) {
+                event.preventDefault();
+            }
+
+            function drag(event) {
+                event.dataTransfer.setData("text", event.target.id);
+            }
+
+            function drop(event) {
+                event.preventDefault();
+                var data = event.dataTransfer.getData("text");
+                event.target.appendChild(document.getElementById(data));
+                  count+=1;
+             
+                if(count==2){
+                    var newScore = localStorage.getItem('points');
+                    newScore = parseInt(newScore);
+                    newScore += 100;
+                    localStorage.setItem('points', newScore);       window.location.replace("file:///Users/loaner/Desktop/fishing.html");
+                    
+                }
+            }
+            
+         
+        </script>
+        
+        <!--ice1location-->
+        <div ondrop="drop(event)" ondragover="allowDrop(event)" style='position:absolute; top:135px; left:218px; z-index:2; width:390px; height:180px; padding:0px; border:0px solid #aaaaaa'>
+        </div>  
+        
+        <!--ice1-->
+        <div style= 'position:absolute; top:410px; left:20px; z-index:1'>        
+            <img id="drag1" src="ice4.png" draggable="true" ondragstart="drag(event)">
+        </div>
+    
+        <!--ice2location-->
+        <div ondrop="drop(event)" ondragover="allowDrop(event)" style='position:absolute; top:314px; left:218px; z-index:2; width:400px; height:200px; padding:0px; border:0px solid #aaaaaa'>
+        </div>  
+        
+        <!--ice2-->
+        <div style= 'position:absolute; top:20px; left:460px; z-index:1'>        
+            <img id="drag2" src="iceberg.png" draggable="true" ondragstart="drag(event)" >
+        </div>
+        
+        <!-- text-->
+        <div id = 'text' style='position:absolute; top:80px; left:220px; z-index:1; font-size:30px'>        
+            <font face = "Courier new" color = "black">Put the ice back together.</font>
+        </div>
+        
+        <div id='timer' style='position:absolute; top:550px; left:850px; z-index:1; font-size:30px' /><script type="text/javascript">window.onload = CreateTimer("timer", numberOfSeconds);</script>
+        
+       
+        
+     
+        
+    </body>  
+</html>
