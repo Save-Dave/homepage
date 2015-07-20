@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>Save Dave - Don't Overfish!</title>
-        <link rel="stylesheet" type="text/css" href="stack.css">
+        <link rel="stylesheet" type="text/css" href="SLCSS.css">
     </head>
     <body>
         <div class = "container" position: relative>
@@ -72,7 +72,7 @@
         function UpdateTimer() {
             Timer.innerHTML = TotalSeconds;
             if(TotalSeconds == 0){
-                window.location.replace("file:///Users/loaner/Desktop/death.html");    
+                window.location.replace("./death.html");    
             }
         }
             
@@ -100,44 +100,44 @@
             
             //net
             var net = new Image();
-            net.src = 'file:///Users/loaner/Desktop/net.png';
+            net.src = 'images/net.png';
             net.onload = function () {
                 ctx.drawImage(net, 150, 100);
             }
             
             //fish
             var fish1 = new Image();
-            fish1.src = 'file:///Users/loaner/Desktop/fish1.png';
+            fish1.src = 'images/fish1.png';
             fish1.onload = function () {
                 f1ctx.drawImage(fish1, 230, 400);
             }
             
             var fish2 = new Image();
-            fish2.src = 'file:///Users/loaner/Desktop/fish2.png';
+            fish2.src = 'images/fish2.png';
             fish2.onload = function () {
                 f2ctx.drawImage(fish2, 400, 340);
             }
             
             var fish3 = new Image();
-            fish3.src = 'file:///Users/loaner/Desktop/fish6.png';
+            fish3.src = 'images/fish6.png';
             fish3.onload = function () {
                 f3ctx.drawImage(fish3, 130, 130);
             }
             
             var fish4 = new Image();
-            fish4.src = 'file:///Users/loaner/Desktop/fish4.png';
+            fish4.src = 'images/fish4.png';
             fish4.onload = function () {
                 f4ctx.drawImage(fish4, 518, 230);
             }
             
             var fish5 = new Image();
-            fish5.src = 'file:///Users/loaner/Desktop/fish5.png';
+            fish5.src = 'images/fish5.png';
             fish5.onload = function () {
                 f5ctx.drawImage(fish5, 600, 400);
             }
             
             var fish6 = new Image();
-            fish6.src = 'file:///Users/loaner/Desktop/fish7.png';
+            fish6.src = 'images/fish7.png';
             fish6.onload = function () {
                 f6ctx.drawImage(fish6, 450, 450);
             }
@@ -178,7 +178,7 @@
                     newScore = parseInt(newScore);
                     newScore += 100;
                     localStorage.setItem('points', newScore); 
-                    window.location.replace("file:///Users/loaner/Desktop/Oil.html"); 
+                    window.location.replace("./Oil.html"); 
                     
                     
                 }
