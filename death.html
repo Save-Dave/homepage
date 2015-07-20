@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Save Dave - Oh Well</title>
+    </head>
+    
+     <style> button{
+        color:orange; font-size:30px;
+    </style>
+    
+    <body>
+        <canvas id = "myCanvas" width = "900" height = "600" style = "border:1px solid #ad5c5c;"></canvas>
+        <script>
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+            
+            ctx.fillStyle = "#00153d";
+            ctx.fillRect(0,0,900,600);
+            
+            //text
+            ctx.fillStyle = "#ffffff";
+            ctx.font = "60px Courier new";
+            ctx.fillText("You Lost",300, 130);
+            ctx.font = "30px Courier new";
+            ctx.fillText("but you are " + localStorage.getItem('points') + " points closer",190, 190);
+            ctx.fillText("to saving planet Eco (and Dave!).",155, 230);
+            localStorage.setItem('points', 0);
+            
+            //dave
+            var dave = new Image();
+            dave.src = 'file:///Users/loaner/Desktop/dave.png';
+            dave.onload = function () {
+                ctx.drawImage(dave, 40, 350);
+            }
+            
+            //speach bubble
+            var bubble = new Image();
+            bubble.src = 'file:///Users/loaner/Desktop/bubble.png';
+            bubble.onload = function () {
+                ctx.drawImage(bubble, 260, 300);
+                ctx.fillStyle = "#725232";
+                ctx.font = "40px Arial";
+                ctx.fillText("Thanks!",290, 380);
+            }
+            
+            //tree
+            var tree = new Image();
+            tree.src = 'file:///Users/loaner/Desktop/tree.png';
+            tree.onload = function () {
+                ctx.drawImage(tree, 670, 230);
+            }
+            
+            var ship = new Image();
+            ship.src = 'file:///Users/loaner/Desktop/ship.png';
+            ship.onload = function () {
+                ctx.drawImage(ship, 530, 320);
+            }
+            
+        </script>
+        
+         <div id = 'd1' style = "position: absolute; top:520px; left:300px;z-index:1">
+            <center><button type = "button" onclick = "window.open('file:///Users/loaner/Desktop/Homepage.html');">Back to Home.</button></center>
+        </div>
+    </body>
+</html>
