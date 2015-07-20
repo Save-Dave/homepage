@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<!--        <link rel="stylesheet" type="text/css" href="stack.css">-->
+
+<!--        <canvas id="firstcanvas" width="900" height="600" style="border:1px solid #c3c3c3;"> -->
+        <canvas id="myCanvas" width="900" height="600" style="border:1px solid ##2B65EC;">
+             
+</canvas>
+
+    </head>
+    <body>
+
+    <script>
+//        var first = document.getElementById("firstcanvas");
+        var c = document.getElementById("myCanvas");
+       
+//        var firstimage = first.getContext("2d");
+        var image=c.getContext("2d");
+        
+        
+        var score = 0;
+        var won = false;
+        var one = 0;
+        var two = 0;
+        var three = 0;
+        var four = 0;
+        var five = 0;
+        var six = 0;
+        var seven = 0;
+        var eight = 0;
+        var nine = 0;
+        
+        var Timer;
+        var TotalSeconds;
+        var TimeStr = LeadingZero(TotalSeconds);
+        
+        var numberOfSeconds;
+            
+            if(parseInt(localStorage.getItem('points')) < 300){
+                numberOfSeconds = 20;   
+            }
+            
+            else if(parseInt(localStorage.getItem('points')) >= 300 && parseInt(localStorage.getItem('points')) < 600 ){
+                numberOfSeconds = 15;   
+            }
+            
+            else if(parseInt(localStorage.getItem('points')) >= 600 && parseInt(localStorage.getItem('points')) < 900 ){
+                numberOfSeconds = 10;   
+            }
+            
+            else if(parseInt(localStorage.getItem('points')) >= 900){
+                numberOfSeconds = 5;   
+            }
+
+        function CreateTimer(TimerID, Time) {
+            Timer = document.getElementById(TimerID);
+            TotalSeconds = Time;
+            UpdateTimer()
+            window.setTimeout("Tick()", 1000);
+        }
+
+        function Tick() {
+            TotalSeconds -= 1;
+            UpdateTimer()
+            window.setTimeout("Tick()", 1000);
+        }
+           
+        function UpdateTimer() {
+            Timer.innerHTML = TotalSeconds;
+            if(TotalSeconds == 0){
+                window.location.replace("file:///Users/loaner/Desktop/death.html");    
+            }
+        }
+            
+        function LeadingZero(Time) {
+            return (Time < 10) ? "0" + Time : + Time;
+        }
+
+
+      image.fillStyle="#2B65EC";
+      image.fillRect(0,0,900,600);
+      image.fillStyle = "black";
+      image.font = "30px Courier new";
+      image.fillText("Click to clean up the oil spill!",160,70,850); 
+    
+        var oil = new Image();
+        oil.src='file://localhost/Users/loaner/Desktop/oilspill.png'
+        oil.onload=function(){
+            image.drawImage(oil,70,90);
+        }
+        
+        c.addEventListener("click",getClickPosition,false);
+           function getClickPosition(e) {
+	       var mouseX = e.clientX;
+	       var mouseY = e.clientY; 
+
+        if(mouseX>=0 && mouseX<=100){
+            image.fillStyle="#2B65EC";
+            image.fillRect(0,0,100,600);
+            image.fillStyle = "black";
+            image.font = "30px Courier new";
+            image.fillText("Click to clean up the oil spill!",160,70,850);
+            one = 1;
+        }
+        
+        if(mouseX>=100 && mouseX<=200){
+            image.fillStyle="#2B65EC";
+            image.fillRect(100,0,100,600);
+            image.fillStyle = "black";
+            image.font = "30px Courier new";
+            image.fillText("Click to clean up the oil spill!",160,70,850);
+            two = 1;
+        }
+        if(mouseX>=200 && mouseX<=300){
+            image.fillStyle="#2B65EC";
+            image.fillRect(200,0,100,600);
+            image.fillStyle = "black";
+            image.font = "30px Courier new";
+            image.fillText("Click to clean up the oil spill!",160,70,850);
+            three = 1;
+        }
+        if(mouseX>=300 && mouseX<=400){
+            image.fillStyle="#2B65EC";
+            image.fillRect(300,0,100,600);
+            image.fillStyle = "black";
+            image.font = "30px Courier new";
+            image.fillText("Click to clean up the oil spill!",160,70,850);
+            four = 1;
+        }
+        if(mouseX>=400 && mouseX<=500){
+            image.fillStyle="#2B65EC";
+            image.fillRect(400,0,100,600);
+            image.fillStyle = "black";
+            image.font = "30px Courier new";
+            image.fillText("Click to clean up the oil spill!",160,70,850);
+            five = 1;
+        }
+        
+        if(mouseX>=500 && mouseX<=600){
+            image.fillStyle="#2B65EC";
+            image.fillRect(500,0,100,600);
+            image.fillStyle = "black";
+            image.font = "30px Courier new";
+            image.fillText("Click to clean up the oil spill!",160,70,850);
+            six = 1;
+        }
+        
+        if(mouseX>=600 && mouseX<=700){
+            image.fillStyle="#2B65EC";
+            image.fillRect(600,0,100,600);
+            image.fillStyle = "black";
+            image.font = "30px Courier new";
+            image.fillText("Click to clean up the oil spill!",160,70,850);
+            seven = 1;
+        }
+        
+        if(mouseX>=700 && mouseX<=800){
+            image.fillStyle="#2B65EC";
+            image.fillRect(700,0,100,600);
+            image.fillStyle = "black";
+            image.font = "30px Courier new";
+            image.fillText("Click to clean up the oil spill!",160,70,850);
+            eight = 1;
+        }
+        
+        if(mouseX>=800 && mouseX<=900){
+            image.fillStyle="#2B65EC";
+            image.fillRect(800,0,100,600);
+            image.fillStyle = "black";
+            image.font = "30px Courier new";
+            image.fillText("Click to clean up the oil spill!",160,70,850); 
+            nine = 1;
+        }
+        
+        if(one == 1 && two == 1 && three == 1 && four == 1 && five == 1 && six == 1 && seven == 1 && eight == 1 && nine == 1 ){
+             won = true;
+            var newScore = localStorage.getItem('points');
+            newScore = parseInt(newScore);
+            newScore += 100;
+            localStorage.setItem('points', newScore); 
+             window.location.replace("file:///Users/loaner/Desktop/ice.html");   
+                
+        }
+        
+    }
+
+        </script>
+        
+        <div id='timer' style='position:absolute; top:550px; left:850px; z-index:1; font-size:30px' /><script type="text/javascript">window.onload = CreateTimer("timer", numberOfSeconds);</script>
+
+        </body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Save Dave - Don't Overfish!</title>
+        <link rel="stylesheet" type="text/css" href="stack.css">
+    </head>
+    <body>
+        <div class = "container" position: relative>
+            <canvas id = "myCanvas" width = "900" height = "600" style = "border:1px solid #D2B48C;"></canvas>
+            <canvas id = "f1Canvas" width = "900" height = "600" style = "border:1px solid #D2B48C;"></canvas>
+            <canvas id = "f2Canvas" width = "900" height = "600" style = "border:1px solid #D2B48C;"></canvas>
+            <canvas id = "f3Canvas" width = "900" height = "600" style = "border:1px solid #D2B48C;"></canvas>
+            <canvas id = "f4Canvas" width = "900" height = "600" style = "border:1px solid #D2B48C;"></canvas>
+            <canvas id = "f5Canvas" width = "900" height = "600" style = "border:1px solid #D2B48C;"></canvas>
+            <canvas id = "f6Canvas" width = "900" height = "600" style = "border:1px solid #D2B48C;"></canvas>
+        </div>
+        <script>
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+            var f1 = document.getElementById("f1Canvas");
+            var f1ctx = f1.getContext("2d");
+            var f2 = document.getElementById("f2Canvas");
+            var f2ctx = f2.getContext("2d");
+            var f3 = document.getElementById("f3Canvas");
+            var f3ctx = f3.getContext("2d");
+            var f4 = document.getElementById("f4Canvas");
+            var f4ctx = f4.getContext("2d");
+            var f5 = document.getElementById("f5Canvas");
+            var f5ctx = f5.getContext("2d");
+            var f6 = document.getElementById("f6Canvas");
+            var f6ctx = f6.getContext("2d");
+            
+            var Timer;
+            var TotalSeconds;
+            var TimeStr = LeadingZero(TotalSeconds);
+            var outOfTime = false;
+            
+            var numberOfSeconds;
+            
+            if(parseInt(localStorage.getItem('points')) < 300){
+                numberOfSeconds = 20;   
+            }
+            
+            else if(parseInt(localStorage.getItem('points')) >= 300 && parseInt(localStorage.getItem('points')) < 600 ){
+                numberOfSeconds = 15;   
+            }
+            
+            else if(parseInt(localStorage.getItem('points')) >= 600 && parseInt(localStorage.getItem('points')) < 900 ){
+                numberOfSeconds = 10;   
+            }
+            
+            else if(parseInt(localStorage.getItem('points')) >= 900){
+                numberOfSeconds = 5;   
+            }
+
+        function CreateTimer(TimerID, Time) {
+            Timer = document.getElementById(TimerID);
+            TotalSeconds = Time;
+            UpdateTimer()
+            window.setTimeout("Tick()", 1000);
+//            if(TotalSeconds == 0){
+//                window.location.replace("file:///Users/loaner/Desktop/death.html");    
+//            }
+        }
+
+        function Tick() {
+            TotalSeconds -= 1;
+            UpdateTimer()
+            window.setTimeout("Tick()", 1000);
+        }
+           
+        function UpdateTimer() {
+            Timer.innerHTML = TotalSeconds;
+            if(TotalSeconds == 0){
+                window.location.replace("file:///Users/loaner/Desktop/death.html");    
+            }
+        }
+            
+        function LeadingZero(Time) {
+
+            return (Time < 10) ? "0" + Time : + Time;
+            
+        }
+            
+        
+
+            
+            var grd = ctx.createLinearGradient(0,0,0,600);
+            grd.addColorStop(0,"#99b2ff");
+            grd.addColorStop(1,"#2447b2");
+            
+            ctx.fillStyle = grd;
+            ctx.fillRect(0,0,900,600);
+            
+            //text
+            ctx.fillStyle = "#000000";
+            ctx.font = "30px Courier new";
+            ctx.fillText("Click sea creatures to cut them out of", 100, 80);
+            ctx.fillText("the net, and stop overfishing.", 180, 120);
+            
+            //net
+            var net = new Image();
+            net.src = 'file:///Users/loaner/Desktop/net.png';
+            net.onload = function () {
+                ctx.drawImage(net, 150, 100);
+            }
+            
+            //fish
+            var fish1 = new Image();
+            fish1.src = 'file:///Users/loaner/Desktop/fish1.png';
+            fish1.onload = function () {
+                f1ctx.drawImage(fish1, 230, 400);
+            }
+            
+            var fish2 = new Image();
+            fish2.src = 'file:///Users/loaner/Desktop/fish2.png';
+            fish2.onload = function () {
+                f2ctx.drawImage(fish2, 400, 340);
+            }
+            
+            var fish3 = new Image();
+            fish3.src = 'file:///Users/loaner/Desktop/fish6.png';
+            fish3.onload = function () {
+                f3ctx.drawImage(fish3, 130, 130);
+            }
+            
+            var fish4 = new Image();
+            fish4.src = 'file:///Users/loaner/Desktop/fish4.png';
+            fish4.onload = function () {
+                f4ctx.drawImage(fish4, 518, 230);
+            }
+            
+            var fish5 = new Image();
+            fish5.src = 'file:///Users/loaner/Desktop/fish5.png';
+            fish5.onload = function () {
+                f5ctx.drawImage(fish5, 600, 400);
+            }
+            
+            var fish6 = new Image();
+            fish6.src = 'file:///Users/loaner/Desktop/fish7.png';
+            fish6.onload = function () {
+                f6ctx.drawImage(fish6, 450, 450);
+            }
+            
+            var removed = 0;
+            f6.addEventListener("click", free, true);
+            
+            function free(e){
+	            var mouseX = e.clientX;
+	            var mouseY = e.clientY;
+            
+                if(mouseX >= 230 && mouseX <= 356 && mouseY >= 400 && mouseY <= 495){
+                    f1ctx.clearRect(0, 0, 900, 600);
+                    removed += 1;
+                }
+                if(mouseX >= 400 && mouseX <= 515 && mouseY >= 340 && mouseY <= 397){
+                    f2ctx.clearRect(0, 0, 900, 600);
+                    removed += 1;
+                }
+                if (mouseX >= 200 && mouseX <= 500 && mouseY >= 140 && mouseY <= 335){
+                    f3ctx.clearRect(0,0,900,600);
+                    removed += 1;
+                }
+                if (mouseX >= 518 && mouseX <= 662 && mouseY >= 233 && mouseY <= 368){
+                    f4ctx.clearRect(0,0,900,600);
+                    removed += 1;
+                }
+                if(mouseX >= 600 && mouseX <= 726 && mouseY >= 400 && mouseY <= 482){
+                    f5ctx.clearRect(0, 0, 900, 600);
+                    removed += 1;
+                }
+                if(mouseX >= 450 && mouseX <= 540 && mouseY >= 450 && mouseY <= 546){
+                    f6ctx.clearRect(0, 0, 900, 600);
+                    removed += 1;
+                }
+                if(removed == 6){
+                   var newScore = localStorage.getItem('points');
+                    newScore = parseInt(newScore);
+                    newScore += 100;
+                    localStorage.setItem('points', newScore); 
+                    window.location.replace("file:///Users/loaner/Desktop/Oil.html"); 
+                    
+                    
+                }
+              }
+      
+            
+        </script>
+        
+        <div id='timer' style='position:absolute; top:550px; left:850px; z-index:1; font-size:30px' /><script type="text/javascript">window.onload = CreateTimer("timer", numberOfSeconds);</script>
+    </body>
+</html>
