@@ -50,7 +50,7 @@
             function UpdateTimer() {
                 Timer.innerHTML = TotalSeconds;
                 if(TotalSeconds == 0){
-                window.location.replace("file:///Users/loaner/Desktop/death.html");    
+                window.location.replace("./death.html");    
                 }   
             }
             
@@ -119,7 +119,8 @@
                     var newScore = localStorage.getItem('points');
                     newScore = parseInt(newScore);
                     newScore += 100;
-                    localStorage.setItem('points', newScore);       window.location.replace("file:///Users/loaner/Desktop/fishing.html");
+                    localStorage.setItem('points', newScore);      
+                    window.location.replace("./fishing.html");
                     
                 }
             }
