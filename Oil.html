@@ -85,7 +85,7 @@
       image.fillText("Click to clean up the oil spill!",160,70,850); 
     
         var oil = new Image();
-        oil.src='file://localhost/Users/loaner/Desktop/oilspill.png'
+        oil.src='images/oilspill.png'
         oil.onload=function(){
             image.drawImage(oil,70,90);
         }
@@ -179,7 +179,7 @@
             newScore = parseInt(newScore);
             newScore += 100;
             localStorage.setItem('points', newScore); 
-             window.location.replace("file:///Users/loaner/Desktop/ice.html");   
+             window.location.replace("./ice.html");   
                 
         }
         
