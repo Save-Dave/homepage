@@ -87,7 +87,7 @@
         function UpdateTimer() {
             Timer.innerHTML = TotalSeconds;
             if(TotalSeconds == 0){
-                window.location.replace("file:///Users/loaner/Desktop/death.html");    
+                window.location.replace("./death.html");    
             }
         }
             
@@ -97,7 +97,7 @@
 
   
     var car=new Image();   
-    car.src='file://localhost/Users/loaner/Desktop/car.png'
+    car.src='images/car.png'
     car.onload = function (){
         gameLoop();
     }
@@ -182,11 +182,11 @@ function drawScreen(){
             newScore = parseInt(newScore);
             newScore += 100;
             localStorage.setItem('points', newScore); 
-        window.location.replace("file:///Users/loaner/Desktop/garbagecan.html")
+        window.location.replace("./garbagecan.html")
         
    }
         else{
-        window.location.replace("file:///Users/loaner/Desktop/death.html");
+        window.location.replace("./death.html");
     }
   } 
 
@@ -195,12 +195,12 @@ function drawScreen(){
    
     
    var p1=new Image();   
-    p1.src='file://localhost/Users/loaner/Desktop/p1.png'
+    p1.src='images/p1.png'
     p1.onload = function () {   
     image2.drawImage(p1,105,400);
      } 
     var flag1=new Image();   
-    flag1.src='file://localhost/Users/loaner/Desktop/flag.png'
+    flag1.src='images/flag.png'
     flag1.onload = function () {   
     image2.drawImage(flag1,225,430);
      }
@@ -208,24 +208,24 @@ function drawScreen(){
  
    
      var p2=new Image();   
-    p2.src='file://localhost/Users/loaner/Desktop/p2.png'
+    p2.src='images/p2.png'
     p2.onload = function () {   
     image3.drawImage(p2,700,300);
     }
     var flag2=new Image();   
-    flag2.src='file://localhost/Users/loaner/Desktop/flag2.png'
+    flag2.src='images/flag2.png'
     flag2.onload = function () {   
     image3.drawImage(flag2,630,330);
      }
    
    
       var p3=new Image();   
-    p3.src='file://localhost/Users/loaner/Desktop/p3.png'
+    p3.src='images/p3.png'
     p3.onload = function () {   
     image4.drawImage(p3,100,100);
     }
     var flag3=new Image();   
-    flag3.src='file://localhost/Users/loaner/Desktop/flag3.png'
+    flag3.src='images/flag3.png'
     flag3.onload = function () {   
     image4.drawImage(flag3,225,140);
      }
