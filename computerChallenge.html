@@ -49,7 +49,7 @@
         function UpdateTimer() {
             Timer.innerHTML = TotalSeconds;
             if(TotalSeconds == 0){
-                window.location.replace("file:///Users/loaner/Desktop/death.html");    
+                window.location.replace("./death.html");    
             }
         }
             
@@ -114,7 +114,7 @@
     
     //power outlet
  	var outlet=new Image();
- 	outlet.src='file:///Users/loaner/Downloads/outlet.png'
+ 	outlet.src='images/outlet.png'
  	outlet.onload = function () {
  	outlet.drawImage(outlet, 15, 15);
  	}
@@ -130,7 +130,7 @@
                     newScore = parseInt(newScore);
                     newScore += 100;
                     localStorage.setItem('points', newScore); 
-                    window.location.replace("file:///Users/loaner/Desktop/SinkChallenge.html");
+                    window.location.replace("./SinkChallenge.html");
  	          }
     }
     
