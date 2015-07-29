@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <style>
+        </style>
+</head>
+
+ <body>
+<canvas id="myCanvas" width="900" height="600" style="border:1px solid #c3c3c3;">
+</canvas>
+<script>
+    var c = document.getElementById("myCanvas");
+     var image=c.getContext("2d");
+    
+    var counter=1;
+    var animate;
+    
+    var run = true;
+    
+            var Timer;
+            var TotalSeconds;
+            var TimeStr = LeadingZero(TotalSeconds);
+    
+     var numberOfSeconds;
+            
+            if(parseInt(localStorage.getItem('points')) < 300){
+                numberOfSeconds = 10;   
+            }
+            
+            else if(parseInt(localStorage.getItem('points')) >= 300 && parseInt(localStorage.getItem('points')) < 600 ){
+                numberOfSeconds = 5;   
+            }
+            
+            else if(parseInt(localStorage.getItem('points')) >= 600 && parseInt(localStorage.getItem('points')) < 900 ){
+                numberOfSeconds = 3;   
+            }
+            
+            else if(parseInt(localStorage.getItem('points')) >= 900){
+                numberOfSeconds = 2;   
+            }
+
+        function CreateTimer(TimerID, Time) {
+            Timer = document.getElementById(TimerID);
+            TotalSeconds = Time;
+            UpdateTimer()
+            window.setTimeout("Tick()", 1000);
+        }
+
+        function Tick() {
+            TotalSeconds -= 1;
+            UpdateTimer()
+            window.setTimeout("Tick()", 1000);
+        }
+           
+        function UpdateTimer() {
+            Timer.innerHTML = TotalSeconds;
+            if(TotalSeconds == 0){
+                window.location.replace("file:///Users/loaner/Desktop/death.html");    
+            }
+        }
+            
+        function LeadingZero(Time) {
+            return (Time < 10) ? "0" + Time : + Time;
+        }
+    
+    //background
+    var faucet=new Image();
+ 	faucet.src='file:///Users/loaner/Desktop/shower.jpg'
+ 	faucet.onload = function () {
+ 	//image.drawImage(faucet, 0,0);
+ 	}
+    
+    //water droplet
+    var faucet2=new Image();
+    faucet2.src='file:///Users/loaner/Desktop/blue-water-drop-hi.png'
+    faucet2.onload = function() {
+    image.drawImage(faucet2,400,500);
+        gameLoop();
+    }
+    
+    var won = false;
+    
+    function gameLoop() {
+        drawScreen();
+        animate = setTimeout('gameLoop()',100);
+        c.addEventListener("click", getClickPosition, true);
+    }
+    function getClickPosition(e) {
+        var mouseX = e.clientX;
+	    var mouseY = e.clientY; 
+        if (mouseX>=700 && mouseX<=800 && mouseY>=420 && mouseY<=470) {
+            clearTimeout(animate);
+            image.drawImage(faucet, 0,0);
+            addPoints();
+                
+            
+        }       
+    }
+   
+    
+    
+    function addPoints(){
+            var newScore = localStorage.getItem('points');
+            newScore = parseInt(newScore);
+            newScore += 100;
+            localStorage.setItem('points', newScore); 
+            window.location.replace("file:///Users/loaner/Desktop/LightsChallenge.html");
+    }
+    
+    function drawScreen(){
+        //background
+    image.drawImage(faucet, 0,0);
+    image.drawImage(faucet2,440,250+counter);
+        if(counter>200)
+        {
+            counter = 0;
+        }
+        else
+        {
+        counter=counter+50;
+        }
+    }
+    
+    
+    
+</script>
+     
+     <div id='timer' style='position:absolute; top:550px; left:850px; z-index:1; font-size:30px' /><script type="text/javascript">window.onload = CreateTimer("timer", numberOfSeconds);</script>
+     
+ </body>
+</html>

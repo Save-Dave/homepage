@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+        </style>
+    </head>
+ <body>
+     <canvas id="myCanvas" width="900" height="600" style="border:1px solid #c3c3c3;">
+</canvas>
+<script>
+     var c = document.getElementById("myCanvas");
+     var image=c.getContext("2d");
+    
+     var numberOfSeconds;
+            
+            if(parseInt(localStorage.getItem('points')) < 300){
+                numberOfSeconds = 10;   
+            }
+            
+            else if(parseInt(localStorage.getItem('points')) >= 300 && parseInt(localStorage.getItem('points')) < 600 ){
+                numberOfSeconds = 5;   
+            }
+            
+            else if(parseInt(localStorage.getItem('points')) >= 600 && parseInt(localStorage.getItem('points')) < 900 ){
+                numberOfSeconds = 3;   
+            }
+            
+            else if(parseInt(localStorage.getItem('points')) >= 900){
+                numberOfSeconds = 2;   
+            }
+    
+                var Timer;
+            var TotalSeconds;
+            var TimeStr = LeadingZero(TotalSeconds);
+
+        function CreateTimer(TimerID, Time) {
+            Timer = document.getElementById(TimerID);
+            TotalSeconds = Time;
+            UpdateTimer()
+            window.setTimeout("Tick()", 1000);
+        }
+
+        function Tick() {
+            TotalSeconds -= 1;
+            UpdateTimer()
+            window.setTimeout("Tick()", 1000);
+        }
+           
+        function UpdateTimer() {
+            Timer.innerHTML = TotalSeconds;
+            if(TotalSeconds == 0){
+                window.location.replace("file:///Users/loaner/Desktop/death.html");    
+            }
+        }
+            
+        function LeadingZero(Time) {
+            return (Time < 10) ? "0" + Time : + Time;
+        }
+     
+    image.fillStyle=("#FFFFD6"); //background (light yellow color)
+    image.fillRect(0,0,900,600);
+    
+    //table legs
+    image.fillStyle=("#AD855C");
+    image.fillRect(150,400,30,170);
+    
+    image.fillStyle=("#AD855C");
+    image.fillRect(720,400,30,170);
+    
+    //table
+     image.fillStyle=("#AD855C"); //brown table color
+     image.fillRect(200,200,500,200); 
+    
+    //triangles, sides of table
+    image.moveTo(200,200);
+    image.lineTo(150,400);
+    image.lineTo(200,400);
+    
+    image.moveTo(700,200);
+    image.lineTo(750,400);
+    image.lineTo(700,400);
+    image.fill();
+    
+    image.fillStyle=("#AD855C");
+    image.fillRect(150,400,600,15);
+    
+    //computer
+    image.fillStyle="#000000";
+    image.fillRect(400,280,100,20); //stand
+    image.fillRect(435,230,30,50);
+    image.fillRect(360,150,180,90);//monitor
+    
+    
+    //black lines for table
+    image.moveTo(200,200);
+    image.lineTo(700,200);
+    image.moveTo(150,400);
+    image.lineTo(750,400);
+    
+    image.strokeRect(150,400,600,15);
+    image.strokeRect(150,415,30,155);
+    image.strokeRect(720,415,30,155);
+    image.stroke();
+    
+    //computer screen
+    image.fillStyle="#FFFFFF";
+    image.fillRect(375,160,150,70);
+    
+    
+    //text
+    image.fillStyle = "#000000";
+    image.font = "30px Courier New";
+    image.fillText("Click the screen to turn the computer off!", 90,50);
+    
+    //power outlet
+ 	var outlet=new Image();
+ 	outlet.src='file:///Users/loaner/Downloads/outlet.png'
+ 	outlet.onload = function () {
+ 	outlet.drawImage(outlet, 15, 15);
+ 	}
+     
+     c.addEventListener("click", getClickPosition, true);
+                image.fillStyle = "#000000";
+                function getClickPosition(e) {
+	            var mouseX = e.clientX;
+	            var mouseY = e.clientY; 
+                if (mouseX>=375 && mouseX<=525 && mouseY>=160 && mouseY<=230) {
+                    image.fillRect(375,160,150,70);
+                    var newScore = localStorage.getItem('points');
+                    newScore = parseInt(newScore);
+                    newScore += 100;
+                    localStorage.setItem('points', newScore); 
+                    window.location.replace("file:///Users/loaner/Desktop/SinkChallenge.html");
+ 	          }
+    }
+    
+            
+</script>
+     
+     <div id='timer' style='position:absolute; top:550px; left:850px; z-index:1; font-size:30px' /><script type="text/javascript">window.onload = CreateTimer("timer", numberOfSeconds);</script> 
+
+ </body>
+</html>

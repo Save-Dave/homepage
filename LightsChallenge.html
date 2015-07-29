@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <style>
+        </style>
+</head>
+
+ <body>
+<canvas id="myCanvas" width="900" height="600" style="border:1px solid #c3c3c3;">
+</canvas>
+<script>
+    var won = false;
+    var c = document.getElementById("myCanvas");
+     var image=c.getContext("2d");
+    
+    image.fillStyle=("#DFDFDF"); //background  (gray color)
+    image.fillRect(0,0,900,600);
+    
+    var x = 90; //lights photo y cordinate
+    
+    var Timer;
+    var TotalSeconds;
+    var TimeStr = LeadingZero(TotalSeconds);
+    
+     var numberOfSeconds;
+            
+            if(parseInt(localStorage.getItem('points')) < 300){
+                numberOfSeconds = 10;   
+            }
+            
+            else if(parseInt(localStorage.getItem('points')) >= 300 && parseInt(localStorage.getItem('points')) < 600 ){
+                numberOfSeconds = 5;   
+            }
+
+            else if(parseInt(localStorage.getItem('points')) >= 600 && parseInt(localStorage.getItem('points')) < 900 ){
+                numberOfSeconds = 3;   
+            }
+            
+            else if(parseInt(localStorage.getItem('points')) >= 900){
+                numberOfSeconds = 2;   
+            }
+
+    function CreateTimer(TimerID, Time) {
+        Timer = document.getElementById(TimerID);
+        TotalSeconds = Time;
+        UpdateTimer()
+        window.setTimeout("Tick()", 1000);
+    }
+
+        function Tick() {
+            TotalSeconds -= 1;
+            UpdateTimer()
+            window.setTimeout("Tick()", 1000);
+        }
+           
+        function UpdateTimer() {
+            Timer.innerHTML = TotalSeconds;
+            if(TotalSeconds == 0){
+                window.location.replace("file:///Users/loaner/Desktop/death.html");    
+            }
+        }
+            
+        function LeadingZero(Time) {
+            return (Time < 10) ? "0" + Time : + Time;
+        }
+    
+    //lit lights
+    var lights=new Image();
+ 	lights.src='file://localhost/Users/loaner/Desktop/lightbulb.png'
+ 	lights.onload = function () {
+ 	image.drawImage(lights, 40,x);
+ 	}
+    
+    var lights2=new Image();
+ 	lights2.src='file://localhost/Users/loaner/Desktop/lightbulb.png'
+ 	lights2.onload = function () {
+ 	image.drawImage(lights2, 350,x);
+ 	}
+    
+    var lights2=new Image();
+ 	lights2.src='file://localhost/Users/loaner/Desktop/lightbulb.png'
+ 	lights2.onload = function () {
+ 	image.drawImage(lights2, 650,x);
+ 	}
+    
+    //text
+    image.fillStyle = "#000000";
+    image.font = "30px Courier New";
+    image.fillText("Turn the lights off to conserve energy!", 100,50);
+    
+    //light switches
+    image.fillStyle=("#9C9C9C");
+    image.fillRect(60,390,140,190);
+    image.fillRect(370,390,140,190);
+    image.fillRect(675,390,140,190);
+    
+    //strokes the light switches
+    image.strokeRect(60,390,140,190);
+    image.strokeRect(370,390, 140, 190);
+    image.strokeRect(675, 390, 140, 190);
+    
+    image.beginPath();
+    image.fillStyle = "#000000";
+    image.arc(130,415,7,0,2*Math.PI);
+    image.fill();
+    
+    image.beginPath();
+    image.fillStyle = "#000000";
+    image.arc(130,560,7,0,2*Math.PI);
+    image.fill();
+    
+    image.beginPath();
+    image.fillStyle = "#000000";
+    image.arc(445,415,7,0,2*Math.PI);
+    image.fill();
+    
+    image.beginPath();
+    image.fillStyle = "#000000";
+    image.arc(445, 560,7,0,2*Math.PI);
+    image.fill();
+    
+    image.beginPath();
+    image.fillStyle = "#000000";
+    image.arc(745,415,7,0,2*Math.PI);
+    image.fill();
+    
+    image.beginPath();
+    image.fillStyle = "#000000";
+    image.arc(745,560,7,0,2*Math.PI);
+    image.fill();
+    
+    //off buttons
+    image.fillStyle = "#E6E6D4";
+    image.fillRect(93,460,80,50);
+    image.fillRect(403,460,80,50);
+    image.fillRect(707,460,80,50);
+    image.fillStyle = "#000000";
+    image.strokeRect(93,460,80,50);
+    image.strokeRect(403,460,80,50);
+    image.strokeRect(707,460,80,50);
+    
+    
+    image.fillStyle="#000000";
+    image.font = "30px Lucida Console";
+    image.fillText("OFF",105,495);
+    image.fillText("OFF", 415,495);
+    image.fillText("OFF", 720,495);
+    
+    //whether the lights are on or off
+    var lightOne = false;
+    var lightTwo = false;
+    var lightThree = false;
+    
+       c.addEventListener("click", getClickPosition, true);
+            
+        function getClickPosition(e) {
+	       var mouseX = e.clientX;
+	       var mouseY = e.clientY; 
+            if (mouseX>=93 && mouseX<=173 && mouseY>=460 && mouseY<=510) {
+                lightOne = true;
+                var lights=new Image();
+ 	lights.src='file://localhost/Users/loaner/Desktop/lightbulb2.png'
+ 	lights.onload = function () {
+ 	image.drawImage(lights, 40,x);
+ 	}
+    
+    }
+    
+    if(mouseX>=403 && mouseX<=483 && mouseY>= 460 && mouseY<=510)
+    {
+        lightTwo = true;
+        var lights2=new Image();
+ 	lights2.src='file://localhost/Users/loaner/Desktop/lightbulb2.png'
+ 	lights2.onload = function () {
+ 	image.drawImage(lights2, 350,x);
+ 	}
+    }
+    if(mouseX>=707 && mouseX<=787 && mouseY>= 460 && mouseY<=510)
+    {
+        
+         var lights3=new Image();
+ 	lights3.src='file://localhost/Users/loaner/Desktop/lightbulb2.png'
+ 	lights3.onload = function () {
+ 	image.drawImage(lights3, 650,x);
+ 	}
+    lightThree = true;
+    }
+            //turns screen black if all lights are shut off
+            if(lightOne&&lightTwo&&lightThree)
+            {
+                var newScore = localStorage.getItem('points');
+                newScore = parseInt(newScore);
+                newScore += 100;
+                localStorage.setItem('points', newScore); 
+                window.location.replace("file:///Users/loaner/Desktop/computerChallenge.html");
+            }
+    }
+    
+   
+        
+    
+</script>
+     
+     <div id='timer' style='position:absolute; top:550px; left:850px; z-index:1; font-size:30px' /><script type="text/javascript">window.onload = CreateTimer("timer", numberOfSeconds);</script> 
+
+ </body>
+</html>
