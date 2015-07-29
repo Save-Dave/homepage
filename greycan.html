@@ -46,7 +46,7 @@
         function UpdateTimer() {
             Timer.innerHTML = TotalSeconds;
             if(TotalSeconds == 0){
-                window.location.replace("file:///Users/loaner/Desktop/death.html");    
+                window.location.replace("./death.html");    
             }
         }
             
@@ -78,19 +78,19 @@
      image.fillText("Green Waste",710,410,180);
      
       var redcan=new Image();    
-        redcan.src='file:///Users/loaner/Desktop/bottlescan.png'
+        redcan.src='images/bottlescan.png'
         redcan.onload = function () {    
         image.drawImage(redcan,270,150);
         }
             
       var bluecan=new Image();    
-        bluecan.src='file:///Users/loaner/Desktop/garbagecan.png'
+        bluecan.src='images/garbagecan.png'
         bluecan.onload = function () {    
         image.drawImage(bluecan,0,150);
         }
             
         var greencan=new Image();    
-        greencan.src='file:///Users/loaner/Desktop/compostcan.png'
+        greencan.src='images/compostcan.png'
         greencan.onload = function () {    
         image.drawImage(greencan,700,150);
         }
@@ -110,7 +110,7 @@ function drop(event) {
     event.preventDefault();
     var data = event.dataTransfer.getData("text");
     event.target.appendChild(document.getElementById(data));
-    window.location.replace("file:///Users/loaner/Desktop/bottlesandcans.html");
+    window.location.replace("./bottlesandcans.html");
 }
      
 
@@ -121,11 +121,11 @@ function drop(event) {
     <body>
 <!--        recycling trash can-->
         <div ondrop="drop(event)" ondragover="allowDrop(event)" style='position:absolute; top:155px; left:500px; z-index:2;width:145px;height:200px;padding:0px;border:0px solid #aaaaaa'>
-            <img id="droppable3" src="recyclingcan.png">
+            <img id="droppable3" src="images/recyclingcan.png">
         </div> 
 <!--        paper-->
         <div style= 'position:absolute; top:460px; left:400px; z-index:1'>        
-        <img id="drag3" src="stackofpaper.gif" draggable="true" ondragstart="drag(event)">
+        <img id="drag3" src="images/stackofpaper.gif" draggable="true" ondragstart="drag(event)">
     </div>
         <div id='timer' style='position:absolute; top:550px; left:850px; z-index:1; font-size:30px' /><script type="text/javascript">window.onload = CreateTimer("timer", numberOfSeconds);</script>
     </body>
