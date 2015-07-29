@@ -47,7 +47,7 @@
         function UpdateTimer() {
             Timer.innerHTML = TotalSeconds;
             if(TotalSeconds == 0){
-                window.location.replace("file:///Users/loaner/Desktop/death.html");    
+                window.location.replace("./death.html");    
             }
         }
             
@@ -81,19 +81,19 @@
      image.fillText("Green Waste",710,410,180);
      
       var bluecan=new Image();    
-        bluecan.src='file:///Users/loaner/Desktop/garbagecan.png'
+        bluecan.src='images/garbagecan.png'
         bluecan.onload = function () {    
         image.drawImage(bluecan,0,150);
         }
             
         var greycan=new Image();    
-        greycan.src='file:///Users/loaner/Desktop/recyclingcan.png'
+        greycan.src='images/recyclingcan.png'
         greycan.onload = function () {    
         image.drawImage(greycan,500,150);
         }
             
         var greencan=new Image();    
-        greencan.src='file:///Users/loaner/Desktop/compostcan.png'
+        greencan.src='images/compostcan.png'
         greencan.onload = function () {    
         image.drawImage(greencan,700,150);
         }
@@ -118,7 +118,7 @@ function drop(event) {
             newScore = parseInt(newScore);
             newScore += 100;
             localStorage.setItem('points', newScore); 
-    window.location.replace("file:///Users/loaner/Desktop/LitteringChallenge.html");
+    window.location.replace("./LitteringChallenge.html");
     // window.location.replace("file:///Users/loaner/Desktop/compostcan.html");
 }
 
@@ -128,12 +128,12 @@ function drop(event) {
         
 <!--        bottles and cans trash can-->
           <div ondrop="drop(event)" ondragover="allowDrop(event)" style='position:absolute; top:155px; left:260px; z-index:2;width:145px;height:200px;padding:0px;border:0px solid #aaaaaa'>
-            <img id="droppable2" src="bottlescan.png">
+            <img id="droppable2" src="images/bottlescan.png">
         </div>  
         
 <!--        bottle-->
         <div style= 'position:absolute; top:435px; left: 450px; z-index:1'>        
-        <img id="drag2" src="bottle.png" draggable="true" ondragstart="drag(event)">
+        <img id="drag2" src="images/bottle.png" draggable="true" ondragstart="drag(event)">
     </div>
         
         <div id='timer' style='position:absolute; top:550px; left:850px; z-index:1; font-size:30px' /><script type="text/javascript">window.onload = CreateTimer("timer", numberOfSeconds);</script>
