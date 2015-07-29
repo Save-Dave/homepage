@@ -114,13 +114,10 @@ function drop(event) {
     event.preventDefault();
     var data = event.dataTransfer.getData("text");
     event.target.appendChild(document.getElementById(data));
-    var newScore = localStorage.getItem('points');
-            newScore = parseInt(newScore);
-            newScore += 100;
-            localStorage.setItem('points', newScore); 
     window.location.replace("./compostcan.html");
     // window.location.replace("file:///Users/loaner/Desktop/compostcan.html");
 }
+     
 
     </script>
     </head>
