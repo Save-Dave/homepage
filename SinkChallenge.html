@@ -55,7 +55,7 @@
         function UpdateTimer() {
             Timer.innerHTML = TotalSeconds;
             if(TotalSeconds == 0){
-                window.location.replace("file:///Users/loaner/Desktop/death.html");    
+                window.location.replace("./death.html");    
             }
         }
             
@@ -65,14 +65,14 @@
     
     //background
     var faucet=new Image();
- 	faucet.src='file:///Users/loaner/Desktop/shower.jpg'
+ 	faucet.src='images/shower.jpg'
  	faucet.onload = function () {
  	//image.drawImage(faucet, 0,0);
  	}
     
     //water droplet
     var faucet2=new Image();
-    faucet2.src='file:///Users/loaner/Desktop/blue-water-drop-hi.png'
+    faucet2.src='images/blue-water-drop-hi.png'
     faucet2.onload = function() {
     image.drawImage(faucet2,400,500);
         gameLoop();
@@ -104,7 +104,7 @@
             newScore = parseInt(newScore);
             newScore += 100;
             localStorage.setItem('points', newScore); 
-            window.location.replace("file:///Users/loaner/Desktop/LightsChallenge.html");
+            window.location.replace("./LightsChallenge.html");
     }
     
     function drawScreen(){
