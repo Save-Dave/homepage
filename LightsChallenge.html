@@ -56,7 +56,7 @@
         function UpdateTimer() {
             Timer.innerHTML = TotalSeconds;
             if(TotalSeconds == 0){
-                window.location.replace("file:///Users/loaner/Desktop/death.html");    
+                window.location.replace("./death.html");    
             }
         }
             
@@ -66,19 +66,19 @@
     
     //lit lights
     var lights=new Image();
- 	lights.src='file://localhost/Users/loaner/Desktop/lightbulb.png'
+ 	lights.src='images./lightbulb.png'
  	lights.onload = function () {
  	image.drawImage(lights, 40,x);
  	}
     
     var lights2=new Image();
- 	lights2.src='file://localhost/Users/loaner/Desktop/lightbulb.png'
+ 	lights2.src='images./lightbulb.png'
  	lights2.onload = function () {
  	image.drawImage(lights2, 350,x);
  	}
     
     var lights2=new Image();
- 	lights2.src='file://localhost/Users/loaner/Desktop/lightbulb.png'
+ 	lights2.src='images./lightbulb.png'
  	lights2.onload = function () {
  	image.drawImage(lights2, 650,x);
  	}
@@ -159,7 +159,7 @@
             if (mouseX>=93 && mouseX<=173 && mouseY>=460 && mouseY<=510) {
                 lightOne = true;
                 var lights=new Image();
- 	lights.src='file://localhost/Users/loaner/Desktop/lightbulb2.png'
+ 	lights.src='images/lightbulb2.png'
  	lights.onload = function () {
  	image.drawImage(lights, 40,x);
  	}
@@ -170,7 +170,7 @@
     {
         lightTwo = true;
         var lights2=new Image();
- 	lights2.src='file://localhost/Users/loaner/Desktop/lightbulb2.png'
+ 	lights2.src='images/lightbulb2.png'
  	lights2.onload = function () {
  	image.drawImage(lights2, 350,x);
  	}
@@ -179,7 +179,7 @@
     {
         
          var lights3=new Image();
- 	lights3.src='file://localhost/Users/loaner/Desktop/lightbulb2.png'
+ 	lights3.src='images/lightbulb2.png'
  	lights3.onload = function () {
  	image.drawImage(lights3, 650,x);
  	}
@@ -192,7 +192,7 @@
                 newScore = parseInt(newScore);
                 newScore += 100;
                 localStorage.setItem('points', newScore); 
-                window.location.replace("file:///Users/loaner/Desktop/computerChallenge.html");
+                window.location.replace("./computerChallenge.html");
             }
     }
     
