@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <canvas id="myCanvas" width="900" height="600" style="border:1px solid #c3c3c3;">
+</canvas>
+
+ <script>
+
+     var c = document.getElementById("myCanvas");
+     var image=c.getContext("2d");
+     
+      var Timer;
+            var TotalSeconds;
+            var TimeStr = LeadingZero(TotalSeconds);
+     
+      var numberOfSeconds;
+            
+            if(parseInt(localStorage.getItem('points')) < 300){
+                numberOfSeconds = 20;   
+            }
+            
+            else if(parseInt(localStorage.getItem('points')) >= 300 && parseInt(localStorage.getItem('points')) < 600 ){
+                numberOfSeconds = 15;   
+            }
+
+            else if(parseInt(localStorage.getItem('points')) >= 600 && parseInt(localStorage.getItem('points')) < 900 ){
+                numberOfSeconds = 10;   
+            }
+            
+            else if(parseInt(localStorage.getItem('points')) >= 900){
+                numberOfSeconds = 5;   
+            }
+
+        function CreateTimer(TimerID, Time) {
+            Timer = document.getElementById(TimerID);
+            TotalSeconds = Time;
+            UpdateTimer()
+            window.setTimeout("Tick()", 1000);
+        }
+
+        function Tick() {
+            TotalSeconds -= 1;
+            UpdateTimer()
+            window.setTimeout("Tick()", 1000);
+        }
+           
+        function UpdateTimer() {
+            Timer.innerHTML = TotalSeconds;
+            if(TotalSeconds == 0){
+                window.location.replace("file:///Users/loaner/Desktop/death.html");    
+            }
+        }
+            
+        function LeadingZero(Time) {
+            return (Time < 10) ? "0" + Time : + Time;
+        }
+
+     
+      image.fillStyle="#CECEDC";
+      image.fillRect(0,0,900,600);
+
+     
+     image.fillStyle="#000000";
+     image.font = "40px Courier New";
+     image.fillText("Place the trash into the Correct Bin ",20,70,850);
+     image.fillStyle="#000000";
+     image.font = "40px Courier New";
+     image.fillText("Trash",20,410,150);
+     
+     image.fillStyle="#000000";
+     image.font = "40px Courier New";
+     image.fillText("Bottles",280,410,150);
+     image.fillText("and Cans",280,440,150);
+     
+      image.fillStyle="#000000";
+     image.font = "40px Courier New";
+     image.fillText("Recycling",500,410,160);
+     
+     image.fillStyle="#000000";
+     image.font = "40px Courier New";
+     image.fillText("Green Waste",710,410,180);
+     
+      var bluecan=new Image();    
+        bluecan.src='file:///Users/loaner/Desktop/garbagecan.png'
+        bluecan.onload = function () {    
+        image.drawImage(bluecan,0,150);
+        }
+            
+        var greycan=new Image();    
+        greycan.src='file:///Users/loaner/Desktop/recyclingcan.png'
+        greycan.onload = function () {    
+        image.drawImage(greycan,500,150);
+        }
+            
+        var greencan=new Image();    
+        greencan.src='file:///Users/loaner/Desktop/compostcan.png'
+        greencan.onload = function () {    
+        image.drawImage(greencan,700,150);
+        }
+     
+     
+    function allowDrop(event) {
+    event.preventDefault();
+}
+
+  
+     function drag(event) {
+    event.dataTransfer.setData("text", event.target.id);
+}
+     
+
+     
+function drop(event) {
+    event.preventDefault();
+    var data = event.dataTransfer.getData("text");
+    event.target.appendChild(document.getElementById(data));
+    var newScore = localStorage.getItem('points');
+            newScore = parseInt(newScore);
+            newScore += 100;
+            localStorage.setItem('points', newScore); 
+    window.location.replace("file:///Users/loaner/Desktop/LitteringChallenge.html");
+    // window.location.replace("file:///Users/loaner/Desktop/compostcan.html");
+}
+
+    </script>
+    </head>
+    <body>
+        
+<!--        bottles and cans trash can-->
+          <div ondrop="drop(event)" ondragover="allowDrop(event)" style='position:absolute; top:155px; left:260px; z-index:2;width:145px;height:200px;padding:0px;border:0px solid #aaaaaa'>
+            <img id="droppable2" src="bottlescan.png">
+        </div>  
+        
+<!--        bottle-->
+        <div style= 'position:absolute; top:435px; left: 450px; z-index:1'>        
+        <img id="drag2" src="bottle.png" draggable="true" ondragstart="drag(event)">
+    </div>
+        
+        <div id='timer' style='position:absolute; top:550px; left:850px; z-index:1; font-size:30px' /><script type="text/javascript">window.onload = CreateTimer("timer", numberOfSeconds);</script>
+    </body>
+</html>
