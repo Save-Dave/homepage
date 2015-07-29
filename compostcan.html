@@ -112,12 +112,13 @@ function drop(event) {
     event.preventDefault();
     var data = event.dataTransfer.getData("text");
     event.target.appendChild(document.getElementById(data));
-    points=points+100;
+    var newScore = localStorage.getItem('points');
+            newScore = parseInt(newScore);
+            newScore += 100;
+            localStorage.setItem('points', newScore); 
     window.location.replace("./LitteringChallenge.html");
 }
-    
-
-
+         
 
     </script>
     </head>
