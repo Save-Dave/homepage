@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Save Dave - Save The Elephant</title>
+        <link rel="stylesheet" type="text/css" href="SLCSS.css">
+    </head>
+    <body>
+        <div class = "container" position: relative>
+            <canvas id = "myCanvas" width = "900" height = "600" style = "border:1px solid #ADD8E6;"></canvas>
+            <canvas id = "pCanvas" width = "900" height = "600" style = "border:1px solid #ADD8E6;"></canvas>
+            <canvas id = "eCanvas" width = "900" height = "600" style = "border:1px solid #ADD8E6;"></canvas>
+        </div>
+        <script>
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+            var p = document.getElementById("pCanvas");
+            var ptx = p.getContext("2d");
+            var e = document.getElementById("eCanvas");
+            var etx = e.getContext("2d");
+            
+            var grd = ctx.createRadialGradient(450,400,100,450,400,300);
+                        var Timer;
+            var TotalSeconds;
+            var TimeStr = LeadingZero(TotalSeconds);
+            
+             var numberOfSeconds;
+            
+            if(parseInt(localStorage.getItem('points')) < 300){
+                numberOfSeconds = 20;   
+            }
+            
+            else if(parseInt(localStorage.getItem('points')) >= 300 && parseInt(localStorage.getItem('points')) < 600 ){
+                numberOfSeconds = 15;   
+            }
+
+            else if(parseInt(localStorage.getItem('points')) >= 600 && parseInt(localStorage.getItem('points')) < 900 ){
+                numberOfSeconds = 10;   
+            }
+            
+            else if(parseInt(localStorage.getItem('points')) >= 900){
+                numberOfSeconds = 5;   
+            }
+
+        function CreateTimer(TimerID, Time) {
+            Timer = document.getElementById(TimerID);
+            TotalSeconds = Time;
+            UpdateTimer()
+            window.setTimeout("Tick()", 1000);
+        }
+
+        function Tick() {
+            TotalSeconds -= 1;
+            UpdateTimer()
+            window.setTimeout("Tick()", 1000);
+        }
+           
+        function UpdateTimer() {
+            Timer.innerHTML = TotalSeconds;
+            if(TotalSeconds == 0){
+                window.location.replace("file:///Users/loaner/Desktop/death.html");    
+            }
+        }
+            
+        function LeadingZero(Time) {
+            return (Time < 10) ? "0" + Time : + Time;
+        }
+            grd.addColorStop(0,"#FF8C00");
+            grd.addColorStop(1,"#87CEEB");
+            ctx.fillStyle = grd;
+            ctx.fillRect(0,0,900,600);
+            
+            //text
+            ctx.fillStyle = "#000000";
+            ctx.font = "30px Courier new";
+            ctx.fillText("Click to help the elephant run", 190, 80);
+            ctx.fillText("from the poacher.", 330, 120);
+            
+            //sun
+            ctx.fillStyle = "#ffa319";
+            ctx.beginPath();
+            ctx.arc(450,400,100,0,2*Math.PI);
+            ctx.fill();
+            
+            //land
+            ctx.fillStyle = "#a3a32e";
+            ctx.beginPath();
+            ctx.bezierCurveTo(0, 400, 200, 300, 800, 600);
+            ctx.fill();
+            ctx.closePath();
+            
+            ctx.beginPath();
+            ctx.moveTo(0,600);
+            ctx.lineTo(0, 399);
+            ctx.lineTo(800, 600);
+            ctx.closePath();
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.bezierCurveTo(50, 600, 700, 400, 900, 400);
+            ctx.fill();
+            ctx.closePath();
+            
+            ctx.beginPath();
+            ctx.moveTo(50, 600);
+            ctx.lineTo(900, 399);
+            ctx.lineTo(900, 600);
+            ctx.closePath();
+            ctx.fill();
+            
+            //poacher
+            var poacher = new Image();
+            var counter = 1;
+            var animate; 
+            poacher.src = 'file:///Users/loaner/Desktop/poacher.png';
+            poacher.onload = function () {
+                gameLoop();
+            }
+            function gameLoop() {
+                drawScreen();
+                animate = setTimeout('gameLoop()', 800);
+            }
+            function drawScreen(){
+                ptx.clearRect(0,0,900,600);
+                ptx.drawImage(poacher, 880 - (counter*15), 400);
+                counter++;
+            }
+            
+            //elephant
+            var win = 0;
+            var caught;
+            var elephant = new Image();
+            var counter2 = 1;
+            var animate; 
+            e.addEventListener("click", move, true);
+
+            elephant.src = 'file:///Users/loaner/Desktop/elephant.png';
+            
+            elephant.onload = function () {
+                etx.drawImage(elephant, 600, 400);
+            }
+            
+            function move(){
+                drawScreen2();
+            }
+            
+            function drawScreen2(){
+                etx.clearRect(0,0,900,600);
+                etx.drawImage(elephant, 600 - (counter2*15), 400);
+                if (counter2 == 35){
+                    win = 1;  
+                }
+                if ((counter2 > (counter-15)) && (counter2 < (counter+15))){
+                    caught = 1;   
+                }
+                counter2++;
+                
+                 if(win == 1){
+                     var newScore = localStorage.getItem('points');
+                     newScore = parseInt(newScore);
+                     newScore += 100;
+                     localStorage.setItem('points', newScore); 
+                     window.location.replace("file:///Users/loaner/Desktop/wildfire.html");   
+            }
+            }
+
+        </script>
+        
+        <div id='timer' style='position:absolute; top:550px; left:850px; z-index:1; font-size:30px' /><script type="text/javascript">window.onload = CreateTimer("timer", numberOfSeconds);</script>
+    </body>
+</html>
+

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Save Dave - Burn On</title>
+        <link rel="stylesheet" type="text/css" href="stack.css">
+    </head>
+    <body>
+        <div class = "container" position: relative>
+            <canvas id = "myCanvas" width = "900" height = "600" style = "border:1px solid #D2B48C;"></canvas>
+            <canvas id = "fCanvas" width = "900" height = "600" style = "border:1px solid #ADD8E6;"></canvas>
+        </div>
+        <script>
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+            var f = document.getElementById("fCanvas");
+            var ftx = f.getContext("2d");
+            
+            var grd = ctx.createLinearGradient(0,0,900,0);
+            
+            var Timer;
+            var TotalSeconds;
+            var TimeStr = LeadingZero(TotalSeconds);
+            var numberOfSeconds;
+            
+            if(parseInt(localStorage.getItem('points')) < 300){
+                numberOfSeconds = 20;   
+            }
+            
+            else if(parseInt(localStorage.getItem('points')) >= 300 && parseInt(localStorage.getItem('points')) < 600 ){
+                numberOfSeconds = 15;   
+            }
+
+            else if(parseInt(localStorage.getItem('points')) >= 600 && parseInt(localStorage.getItem('points')) < 900 ){
+                numberOfSeconds = 10;   
+            }
+            
+            else if(parseInt(localStorage.getItem('points')) >= 900){
+                numberOfSeconds = 5;   
+            }
+
+        function CreateTimer(TimerID, Time) {
+            Timer = document.getElementById(TimerID);
+            TotalSeconds = Time;
+            UpdateTimer()
+            window.setTimeout("Tick()", 1000);
+        }
+
+        function Tick() {
+            TotalSeconds -= 1;
+            UpdateTimer()
+            window.setTimeout("Tick()", 1000);
+        }
+           
+        function UpdateTimer() {
+            Timer.innerHTML = TotalSeconds;
+            
+        }
+            
+        function LeadingZero(Time) {
+            return (Time < 10) ? "0" + Time : + Time;
+        }
+            grd.addColorStop(0,"#bad1d1");
+            grd.addColorStop(1,"#D2B48C");
+            
+            ctx.fillStyle = grd;
+            ctx.fillRect(0,0,900,600);
+            
+            //text
+            ctx.fillStyle = "#000000";
+            ctx.font = "30px Courier new";
+            ctx.fillText("Let the fire run.", 300, 80);
+            
+            //ground
+            ctx.fillStyle = "#8b4513";
+            ctx.fillRect(0,500,900,500);
+            
+            //PLANTS
+            //trees
+            ctx.fillStyle = "#deb887";
+            ctx.fillRect(70,170,40,350);
+            ctx.fillRect(200,155,40,350);
+            ctx.fillRect(400,215,40,340);
+            ctx.fillRect(550,230,40,350);
+            ctx.fillRect(750,185,40,350);
+            
+            //1
+            ctx.fillStyle="#808000";
+            ctx.beginPath();
+            ctx.moveTo(60, 200);
+            ctx.lineTo(90, 120);
+            ctx.lineTo(120, 200);
+            ctx.closePath();
+            ctx.fill();
+            
+            ctx.moveTo(45, 300);
+            ctx.lineTo(90, 120);
+            ctx.lineTo(135, 300);
+            ctx.closePath();
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.moveTo(40, 420);
+            ctx.lineTo(90, 120);
+            ctx.lineTo(140, 420);
+            ctx.closePath();
+            ctx.fill();
+            
+            //2
+            ctx.beginPath();
+            ctx.moveTo(185, 210);
+            ctx.lineTo(220, 90);
+            ctx.lineTo(255, 210);
+            ctx.closePath();
+            ctx.fill();
+            
+            ctx.moveTo(175, 320);
+            ctx.lineTo(220, 90);
+            ctx.lineTo(265, 320);
+            ctx.closePath();
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.moveTo(165, 450);
+            ctx.lineTo(220, 90);
+            ctx.lineTo(275, 450);
+            ctx.closePath();
+            ctx.fill();
+            
+            //3
+            ctx.beginPath();
+            ctx.moveTo(380, 270);
+            ctx.lineTo(420, 160);
+            ctx.lineTo(460, 270);
+            ctx.closePath();
+            ctx.fill();
+            
+            ctx.moveTo(370, 380);
+            ctx.lineTo(420, 160);
+            ctx.lineTo(470, 380);
+            ctx.closePath();
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.moveTo(365, 490);
+            ctx.lineTo(420, 160);
+            ctx.lineTo(475, 490);
+            ctx.closePath();
+            ctx.fill();
+            
+            //4
+            ctx.beginPath();
+            ctx.moveTo(530, 280);
+            ctx.lineTo(570, 140);
+            ctx.lineTo(610, 280);
+            ctx.closePath();
+            ctx.fill();
+            
+            ctx.moveTo(520, 390);
+            ctx.lineTo(570, 140);
+            ctx.lineTo(620, 390);
+            ctx.closePath();
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.moveTo(510, 520);
+            ctx.lineTo(570, 140);
+            ctx.lineTo(630, 520);
+            ctx.closePath();
+            ctx.fill();
+            
+            //5
+            ctx.beginPath();
+            ctx.moveTo(730, 260);
+            ctx.lineTo(770, 120);
+            ctx.lineTo(810, 260);
+            ctx.closePath();
+            ctx.fill();
+            
+            ctx.moveTo(720, 360);
+            ctx.lineTo(770, 140);
+            ctx.lineTo(820, 360);
+            ctx.closePath();
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.moveTo(710, 470);
+            ctx.lineTo(770, 140);
+            ctx.lineTo(830, 470);
+            ctx.closePath();
+            ctx.fill();
+            
+            //bushes
+            //1
+            ctx.fillStyle = "#008000";
+            ctx.beginPath();
+            ctx.bezierCurveTo(890, 520, 850, 550, 840, 580);
+            ctx.fill();
+            ctx.closePath();
+            
+            ctx.beginPath();
+            ctx.bezierCurveTo(790, 530, 830, 550, 840, 580);
+            ctx.fill();
+            ctx.closePath();
+            
+            ctx.beginPath();
+            ctx.bezierCurveTo(800, 500, 840, 540, 840, 580);
+            ctx.fill();
+            ctx.closePath();
+            
+            ctx.beginPath();
+            ctx.bezierCurveTo(870, 510, 820, 550, 840, 580);
+            ctx.fill();
+            ctx.closePath();
+            
+            //2
+            ctx.beginPath();
+            ctx.bezierCurveTo(20, 490, 70, 500, 70, 540);
+            ctx.fill();
+            ctx.closePath();
+            
+            ctx.beginPath();
+            ctx.bezierCurveTo(50, 470, 80, 500, 70, 540);
+            ctx.fill();
+            ctx.closePath();
+            
+            ctx.beginPath();
+            ctx.bezierCurveTo(120, 470, 60, 500, 70, 540);
+            ctx.fill();
+            ctx.closePath();
+            
+            ctx.beginPath();
+            ctx.bezierCurveTo(140, 500, 90, 500, 70, 540);
+            ctx.fill();
+            ctx.closePath();
+            
+            //3
+            ctx.beginPath();
+            ctx.bezierCurveTo(300, 520, 360, 530, 370, 560);
+            ctx.fill();
+            ctx.closePath();
+            
+            ctx.beginPath();
+            ctx.bezierCurveTo(330, 500, 370, 520, 370, 560);
+            ctx.fill();
+            ctx.closePath();
+            
+            ctx.beginPath();
+            ctx.bezierCurveTo(410, 495, 360, 530, 370, 560);
+            ctx.fill();
+            ctx.closePath();
+            
+            ctx.beginPath();
+            ctx.bezierCurveTo(450, 530, 380, 530, 370, 560);
+            ctx.fill();
+            ctx.closePath();
+            
+            //fire
+            var fire = new Image();
+            var counter = 1;
+            var animate; 
+            fire.src = 'file:///Users/loaner/Desktop/fire.png';
+            fire.onload = function () {
+                gameLoop();
+            }
+            
+            function gameLoop() {
+                drawScreen();
+                animate = setTimeout('gameLoop()', 550);
+            }
+            
+            //e.addEventListener("click", end, true);
+            var over=0;
+            
+            function drawScreen(){
+                ftx.drawImage(fire, 900 - (counter*30), 90);
+                counter++;
+                if (counter == 30){
+                    over = 1;    
+                }
+                if(over == 1 || TotalSeconds == 0){
+                    var newScore = localStorage.getItem('points');
+            newScore = parseInt(newScore);
+            newScore += 100;
+            localStorage.setItem('points', newScore); 
+                  window.location.replace("file:///Users/loaner/Downloads/trees.html");   
+                }
+                
+            }
+            function end(){
+                window.location.replace("file:///Users/loaner/Desktop/death.html");
+            }
+            
+            
+            
+        </script>
+        
+        <div id='timer' style='position:absolute; top:550px; left:850px; z-index:1; font-size:30px' /><script type="text/javascript">window.onload = CreateTimer("timer", numberOfSeconds);</script>
+    </body>
+</html>

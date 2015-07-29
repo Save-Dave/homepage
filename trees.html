@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Save Dave - Plant The Trees</title>
+    </head>
+    <body>
+        <canvas id = "myCanvas" width = "900" height = "600" style = "border:1px solid #D2B48C;"></canvas>
+        <script>
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+            var grd = ctx.createLinearGradient(0,0,900,0);
+            
+            var Timer;
+            var TotalSeconds;
+            var TimeStr = LeadingZero(TotalSeconds);
+            var numberOfSeconds;
+            
+            if(parseInt(localStorage.getItem('points')) < 300){
+                numberOfSeconds = 20;   
+            }
+            
+            else if(parseInt(localStorage.getItem('points')) >= 300 && parseInt(localStorage.getItem('points')) < 600 ){
+                numberOfSeconds = 15;   
+            }
+
+            else if(parseInt(localStorage.getItem('points')) >= 600 && parseInt(localStorage.getItem('points')) < 900 ){
+                numberOfSeconds = 10;   
+            }
+            
+            else if(parseInt(localStorage.getItem('points')) >= 900){
+                numberOfSeconds = 5;   
+            }
+
+        function CreateTimer(TimerID, Time) {
+            Timer = document.getElementById(TimerID);
+            TotalSeconds = Time;
+            UpdateTimer()
+            window.setTimeout("Tick()", 1000);
+        }
+
+        function Tick() {
+            TotalSeconds -= 1;
+            UpdateTimer()
+            window.setTimeout("Tick()", 1000);
+        }
+           
+        function UpdateTimer() {
+            Timer.innerHTML = TotalSeconds;
+            if(TotalSeconds == 0){
+                window.location.replace("file:///Users/loaner/Desktop/death.html");    
+            }
+        }
+            
+        function LeadingZero(Time) {
+            return (Time < 10) ? "0" + Time : + Time;
+        }
+            grd.addColorStop(0,"#D2B48C");
+            grd.addColorStop(1,"#CD853F");
+            
+            ctx.fillStyle = grd;
+            ctx.fillRect(0,0,900,600);
+            
+            //text
+            ctx.fillStyle = "#000000";
+            ctx.font = "30px Courier new";
+            ctx.fillText("Click different locations to plant a forest of", 30, 80);
+            ctx.fillText("ten trees.", 360, 120);
+            
+            //plant 1
+            ctx.fillStyle = "#008000";
+            ctx.beginPath();
+            ctx.bezierCurveTo(890, 520, 850, 550, 840, 580);
+            ctx.fill();
+            ctx.closePath();
+            
+            ctx.beginPath();
+            ctx.bezierCurveTo(790, 530, 830, 550, 840, 580);
+            ctx.fill();
+            ctx.closePath();
+            
+            ctx.beginPath();
+            ctx.bezierCurveTo(800, 500, 840, 540, 840, 580);
+            ctx.fill();
+            ctx.closePath();
+            
+            ctx.beginPath();
+            ctx.bezierCurveTo(870, 510, 820, 550, 840, 580);
+            ctx.fill();
+            ctx.closePath();
+            
+            //plant 2
+            ctx.beginPath();
+            ctx.bezierCurveTo(120, 200, 70, 220, 60, 240);
+            ctx.fill();
+            ctx.closePath();
+            
+            ctx.beginPath();
+            ctx.bezierCurveTo(20, 190, 70, 220, 60, 240);
+            ctx.fill();
+            ctx.closePath();
+            
+            ctx.beginPath();
+            ctx.bezierCurveTo(50, 170, 70, 200, 60, 240);
+            ctx.fill();
+            ctx.closePath();
+            
+            ctx.beginPath();
+            ctx.bezierCurveTo(100, 180, 70, 190, 60, 240);
+            ctx.fill();
+            ctx.closePath();
+            
+            //plant 3
+            ctx.beginPath();
+            ctx.bezierCurveTo(790, 100, 750, 90, 700, 170);
+            ctx.fill();
+            ctx.closePath();
+            
+            ctx.beginPath();
+            ctx.bezierCurveTo(650, 100, 690, 110, 700, 170);
+            ctx.fill();
+            ctx.closePath();
+            
+            ctx.beginPath();
+            ctx.bezierCurveTo(690, 85, 720, 100, 700, 170);
+            ctx.fill();
+            ctx.closePath();
+            
+            ctx.beginPath();
+            ctx.bezierCurveTo(750, 90, 720, 100, 700, 170);
+            ctx.fill();
+            ctx.closePath();
+            
+            //TREES
+            var treeCount = 0;
+            
+            c.addEventListener("click", getClickPosition, true);
+            
+            function getClickPosition(e) {
+	            var mouseX = e.clientX;
+	            var mouseY = e.clientY;
+            
+                ctx.fillStyle = "#8B4513";
+                ctx.fillRect(mouseX, mouseY-35, 30, 35);
+
+                ctx.fillStyle="#006400";
+                ctx.beginPath();
+                ctx.moveTo(mouseX-30, mouseY-35);
+                ctx.lineTo(mouseX+15, mouseY-105);
+                ctx.lineTo(mouseX+60, mouseY-35);
+                ctx.closePath();
+                ctx.fill();
+
+                ctx.beginPath();
+                ctx.moveTo(mouseX-25, mouseY-65);
+                ctx.lineTo(mouseX+15, mouseY-125);
+                ctx.lineTo(mouseX+55, mouseY-65);
+                ctx.closePath();
+                ctx.fill();
+
+                ctx.beginPath();
+                ctx.moveTo(mouseX-15, mouseY-95);
+                ctx.lineTo(mouseX+15, mouseY-135);
+                ctx.lineTo(mouseX+45, mouseY-95);
+                ctx.closePath();
+                ctx.fill();
+                
+                treeCount += 1;
+                
+                if(treeCount == 10){
+                    var newScore = localStorage.getItem('points');
+            newScore = parseInt(newScore);
+            newScore += 100;
+            localStorage.setItem('points', newScore); 
+                   window.location.replace("file:///Users/loaner/Desktop/poacher.html");   
+                   
+                }
+            }
+            
+            
+            
+        </script>
+        
+        <div id='timer' style='position:absolute; top:550px; left:850px; z-index:1; font-size:30px' /><script type="text/javascript">window.onload = CreateTimer("timer", numberOfSeconds);</script>
+    </body>
+    
+    
+</html>
