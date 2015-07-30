@@ -57,7 +57,7 @@
         function UpdateTimer() {
             Timer.innerHTML = TotalSeconds;
             if(TotalSeconds == 0){
-                window.location.replace("file:///Users/loaner/Desktop/death.html");    
+                window.location.replace("./death.html");    
             }
         }
             
@@ -111,7 +111,7 @@
             var poacher = new Image();
             var counter = 1;
             var animate; 
-            poacher.src = 'file:///Users/loaner/Desktop/poacher.png';
+            poacher.src = 'images/poacher.png';
             poacher.onload = function () {
                 gameLoop();
             }
@@ -133,7 +133,7 @@
             var animate; 
             e.addEventListener("click", move, true);
 
-            elephant.src = 'file:///Users/loaner/Desktop/elephant.png';
+            elephant.src = 'images/elephant.png';
             
             elephant.onload = function () {
                 etx.drawImage(elephant, 600, 400);
@@ -159,7 +159,7 @@
                      newScore = parseInt(newScore);
                      newScore += 100;
                      localStorage.setItem('points', newScore); 
-                     window.location.replace("file:///Users/loaner/Desktop/wildfire.html");   
+                     window.location.replace("./wildfire.html");   
             }
             }
 
