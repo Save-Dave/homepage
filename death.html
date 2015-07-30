@@ -28,14 +28,14 @@
             
             //dave
             var dave = new Image();
-            dave.src = 'file:///Users/loaner/Desktop/dave.png';
+            dave.src = 'images/dave.png';
             dave.onload = function () {
                 ctx.drawImage(dave, 40, 350);
             }
             
             //speach bubble
             var bubble = new Image();
-            bubble.src = 'file:///Users/loaner/Desktop/bubble.png';
+            bubble.src = 'images/bubble.png';
             bubble.onload = function () {
                 ctx.drawImage(bubble, 260, 300);
                 ctx.fillStyle = "#725232";
@@ -45,13 +45,13 @@
             
             //tree
             var tree = new Image();
-            tree.src = 'file:///Users/loaner/Desktop/tree.png';
+            tree.src = 'images/tree.png';
             tree.onload = function () {
                 ctx.drawImage(tree, 670, 230);
             }
             
             var ship = new Image();
-            ship.src = 'file:///Users/loaner/Desktop/ship.png';
+            ship.src = 'images/ship.png';
             ship.onload = function () {
                 ctx.drawImage(ship, 530, 320);
             }
@@ -59,7 +59,7 @@
         </script>
         
          <div id = 'd1' style = "position: absolute; top:520px; left:300px;z-index:1">
-            <center><button type = "button" onclick = "window.open('file:///Users/loaner/Desktop/Homepage.html');">Back to Home.</button></center>
+            <center><button type = "button" onclick = "window.open('./Homepage.html');">Back to Home.</button></center>
         </div>
     </body>
 </html>
