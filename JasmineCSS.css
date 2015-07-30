@@ -1,0 +1,35 @@
+#myCanvas {
+    position:absolute;
+    top:0;
+    left:0;
+}
+#cloud {
+    position:absolute;
+    top:0;
+    left:0;
+}
+#person {
+    position:absolute;
+    top:0;
+    left:0;
+}
+.wrapper{
+    position:relative;
+    width:400px;
+    height:300px;
+}
+.wrapper myCanvas {
+    position:absolute;
+    top:0;
+    left:0;
+}
+.wrapper cloud {
+    position:absolute;
+    top:0;
+    left:0;
+}
+.wrapper person {
+    position:absolute;
+    top:0;
+    left:0;
+}
