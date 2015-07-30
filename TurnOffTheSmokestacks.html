@@ -54,7 +54,7 @@
         function UpdateTimer() {
             Timer.innerHTML = TotalSeconds;
             if(TotalSeconds == 0){
-                window.location.replace("file:///Users/loaner/Desktop/death.html");    
+                window.location.replace("./death.html");    
             }
         }
             
@@ -124,7 +124,7 @@
         var counter2 = 1;
         var animate;
         var cloudTwo = false; 
-        smoke.src = "file://localhost/Users/loaner/Desktop/gray-cloud-md.png";
+        smoke.src = "images/gray-cloud-md.png";
         smoke.onload = function () {
             gameLoop();
         };
@@ -160,7 +160,7 @@
 
         //Add Stop sign
         var stopSign = new Image();
-        stopSign.src = "file://localhost/Users/loaner/Desktop/stop-button-md.png";
+        stopSign.src = "images/stop-button-md.png";
         stopSign.onload = function() {
             ctx.drawImage(stopSign, 100, 500);
         }
@@ -174,7 +174,7 @@
         var animate2
         
         
-        person.src = "file://localhost/Users/loaner/Desktop/dT4or4b7c.png";
+        person.src = "images/dT4or4b7c.png";
         person.onload = function () {
             fctx.drawImage(person, 800 - (counter3*15), 495);
         }
@@ -193,7 +193,7 @@
             newScore = parseInt(newScore);
             newScore += 100;
             localStorage.setItem('points', newScore); 
-                 window.location.replace("file:///Users/loaner/Desktop/Fracking.html");  
+                 window.location.replace("./Fracking.html");  
             }
         }
 
