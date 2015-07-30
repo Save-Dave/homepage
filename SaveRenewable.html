@@ -2,7 +2,7 @@
 <html>
     <head>
     <title>Save Dave - Choose the Renewable Resources</title>
-    <link rel="stylesheet" type="text/css" href="smokestacks.css">
+    <link rel="stylesheet" type="text/css" href="JasmineCSS.css">
     </head>
     <body>    
             <canvas id="myCanvas" width="900" height="600" style="border:1px solid #FFFFFF " >
@@ -49,7 +49,7 @@
         function UpdateTimer() {
             Timer.innerHTML = TotalSeconds;
             if(TotalSeconds == 0){
-                window.location.replace("file:///Users/loaner/Desktop/death.html");    
+                window.location.replace("./death.html");    
             }
         }
             
@@ -95,43 +95,43 @@
 
         //insert Images
         var hydro = new Image();
-        hydro.src = 'file://localhost/Users/loaner/Desktop/unit.jpg';
+        hydro.src = 'images/unit.jpg';
         hydro.onload = function () {
             ctx.drawImage(hydro, 50, 450);
         }
 
         var coal = new Image();
-        coal.src = 'file://localhost/Users/loaner/Desktop/coal_med.png';
+        coal.src = 'images/coal_med.png';
         coal.onload = function() {
             ctx.drawImage(coal, 300, 500);
         }
 
         var windmill = new Image();
-        windmill.src = 'file://localhost/Users/loaner/Desktop/wind_farm_230x250_ani.gif';
+        windmill.src = 'images/wind_farm_230x250_ani.gif';
         windmill.onload = function (){
             ctx.drawImage(windmill, 675, 155);
         }
 
         var solar = new Image();
-        solar.src = 'file://localhost/Users/loaner/Desktop/solar-panel4.png';
+        solar.src = 'images/solar-panel4.png';
         solar.onload = function () {
             ctx.drawImage(solar, 420, 325);
         }
 
         var sun = new Image();
-        sun.src = 'file://localhost/Users/loaner/Desktop/sun.png';
+        sun.src = 'images/sun.png';
         sun.onload = function (){
             ctx.drawImage(sun, 50, 75);
         }
 
         var oil = new Image();
-        oil.src = 'file:///Users/loaner/Desktop/images.png';
+        oil.src = 'images/images.png';
         oil.onload = function () {
             ctx.drawImage(oil, 750, 450);
         }
 
         var gas = new Image();
-        gas.src = 'file://localhost/Users/loaner/Desktop/natural%20gas.png';
+        gas.src = 'images/natural%20gas.png';
         gas.onload = function () {
             ctx.drawImage(gas, 500, 345);
         }
@@ -139,9 +139,9 @@
         // Click on renewable resources
         c.addEventListener('click', checkPos, true);
         var check = new Image();
-        check.src = 'file:///Users/loaner/Desktop/Check_mark.png';
+        check.src = 'images/Check_mark.png';
         var cross = new Image();
-        cross.src = 'file:///Users/loaner/Desktop/1024px-Red_x.svg.png';
+        cross.src = 'images/1024px-Red_x.svg.png';
         //to count when done
         var waterClicked = false;
         var windClicked = false;
@@ -182,7 +182,7 @@
             newScore = parseInt(newScore);
             newScore += 100;
             localStorage.setItem('points', newScore); 
-             window.location.replace("file:///Users/loaner/Desktop/TurnOffTheSmokestacks.html");  
+             window.location.replace("./TurnOffTheSmokestacks.html");  
           }
         }
         
