@@ -53,7 +53,7 @@
         function UpdateTimer() {
             Timer.innerHTML = TotalSeconds;
             if(TotalSeconds == 0){
-                window.location.replace("file:///Users/loaner/Desktop/death.html");    
+                window.location.replace("./death.html");    
             }
         }
             
@@ -69,11 +69,11 @@
             ctx.fillRect(0, 400, 900, 200);
             //fracking machines
             var cross = new Image();
-            cross.src = 'file:///Users/loaner/Desktop/1024px-Red_x.svg.png';
+            cross.src = 'images/1024px-Red_x.svg.png';
             var stopFrack = new Image();
-            stopFrack.src = 'file:///Users/loaner/Desktop/fracking%20end.png';
+            stopFrack.src = 'images/fracking%20end.png';
             var frack = new Image();    
-            frack.src = 'file:///Users/loaner/Desktop/fracking.png';
+            frack.src = 'images/fracking.png';
             frack.onload = function () {
                     ctx.drawImage(stopFrack, 400, 150);
                     ctx.drawImage(frack, 0, 150);
@@ -87,11 +87,11 @@
             ctx.fillText("as the fracking machines indicate", 156, 100);
             //Numbers on machines
             var num5 = new Image();
-            num5.src = 'file:///Users/loaner/Desktop/5.png';
+            num5.src = 'images/5.png';
             var num3 = new Image();
-            num3.src = 'file:///Users/loaner/Desktop/3.png';
+            num3.src = 'images/3.png';
             var num2 = new Image();
-            num2.src = 'file:///Users/loaner/Desktop/2.png';
+            num2.src = 'images/2.png';
             num2.onload = function () {
                 ctx.drawImage(num5, 343, 190);
                 ctx.drawImage(num3, 43, 190);
@@ -202,7 +202,7 @@
             newScore = parseInt(newScore);
             newScore += 100;
             localStorage.setItem('points', newScore); 
-                window.location.replace("file:///Users/loaner/Desktop/SaveRenewable.html");  
+                window.location.replace("./SaveRenewable.html");  
             }
             }
             c.addEventListener('click', checkPos, true);
