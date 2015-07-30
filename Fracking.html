@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Save Dave - Stop the Fracking </title>
+    <link rel="stylesheet" type="text/css" href="JasmineCSS.css">
+    </head>
+    <body>    
+            <canvas id="myCanvas" width="900" height="600" style="border:1px solid #FFFFFF " >
+            </canvas>
+        <script> 
+            var c = document.getElementById('myCanvas');
+            var ctx = c.getContext('2d');
+            var num1Clicked = 0;
+            var num2Clicked = 0;
+            var num3Clicked = 0;
+            var won = false;
+            
+            var Timer;
+            var TotalSeconds;
+            var TimeStr = LeadingZero(TotalSeconds);
+            
+             var numberOfSeconds;
+            
+            if(parseInt(localStorage.getItem('points')) < 300){
+                numberOfSeconds = 20;   
+            }
+            
+            else if(parseInt(localStorage.getItem('points')) >= 300 && parseInt(localStorage.getItem('points')) < 600 ){
+                numberOfSeconds = 15;   
+            }
+
+            else if(parseInt(localStorage.getItem('points')) >= 600 && parseInt(localStorage.getItem('points')) < 900 ){
+                numberOfSeconds = 10;   
+            }
+            
+            else if(parseInt(localStorage.getItem('points')) >= 900){
+                numberOfSeconds = 5;   
+            }
+
+        function CreateTimer(TimerID, Time) {
+            Timer = document.getElementById(TimerID);
+            TotalSeconds = Time;
+            UpdateTimer()
+            window.setTimeout("Tick()", 1000);
+        }
+
+        function Tick() {
+            TotalSeconds -= 1;
+            UpdateTimer()
+            window.setTimeout("Tick()", 1000);
+        }
+           
+        function UpdateTimer() {
+            Timer.innerHTML = TotalSeconds;
+            if(TotalSeconds == 0){
+                window.location.replace("file:///Users/loaner/Desktop/death.html");    
+            }
+        }
+            
+        function LeadingZero(Time) {
+            return (Time < 10) ? "0" + Time : + Time;
+        }
+            //create the background
+            //sky
+            ctx.fillStyle = '#AAE0E7';
+            ctx.fillRect(0, 0, 900, 200);
+            //dirt
+            ctx.fillStyle = '#6D382E';
+            ctx.fillRect(0, 400, 900, 200);
+            //fracking machines
+            var cross = new Image();
+            cross.src = 'file:///Users/loaner/Desktop/1024px-Red_x.svg.png';
+            var stopFrack = new Image();
+            stopFrack.src = 'file:///Users/loaner/Desktop/fracking%20end.png';
+            var frack = new Image();    
+            frack.src = 'file:///Users/loaner/Desktop/fracking.png';
+            frack.onload = function () {
+                    ctx.drawImage(stopFrack, 400, 150);
+                    ctx.drawImage(frack, 0, 150);
+                    ctx.drawImage(frack, 300, 150);
+                    ctx.drawImage(frack, 600, 150);
+            };
+            //Instructions
+            ctx.fillStyle = "#000000";
+            ctx.font = "30px Courier new";
+            ctx.fillText("Click the red buttons as many times", 146, 50);
+            ctx.fillText("as the fracking machines indicate", 156, 100);
+            //Numbers on machines
+            var num5 = new Image();
+            num5.src = 'file:///Users/loaner/Desktop/5.png';
+            var num3 = new Image();
+            num3.src = 'file:///Users/loaner/Desktop/3.png';
+            var num2 = new Image();
+            num2.src = 'file:///Users/loaner/Desktop/2.png';
+            num2.onload = function () {
+                ctx.drawImage(num5, 343, 190);
+                ctx.drawImage(num3, 43, 190);
+                ctx.drawImage(num2, 643, 190);
+            };
+            //create button images
+            //#1
+            ctx.fillStyle = "#FFC3C4";
+            ctx.beginPath();
+            ctx.arc(150, 525, 40, 0, Math.PI * 2, true);
+            ctx.closePath();
+            ctx.fill();
+            
+            var gradient = ctx.createRadialGradient(150, 525, 0, 150, 525, 35);
+            gradient.addColorStop(0, "lightcoral");
+            gradient.addColorStop(1, "red");
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(150, 525, 35, 0, Math.PI * 2, true);
+            ctx.fill();
+            ctx.closePath();
+            //#2
+            ctx.fillStyle = '#FFC3C4';
+            ctx.beginPath();
+            ctx.arc(450, 525, 40, 0, Math.PI * 2, true);
+            ctx.closePath();
+            ctx.fill();
+
+            var gradient = ctx.createRadialGradient(450, 525, 0, 450, 525, 35);
+            gradient.addColorStop(0, "lightcoral");
+            gradient.addColorStop(1, "red");
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(450, 525, 35, 0, Math.PI * 2, true);
+            ctx.fill();
+            ctx.closePath();
+            //#3
+            ctx.fillStyle = '#FFC3C4';
+            ctx.beginPath();
+            ctx.arc(750, 525, 40, 0, Math.PI * 2, true);
+            ctx.closePath();
+            ctx.fill();
+
+            var gradient = ctx.createRadialGradient(750, 525, 0, 750, 525, 35);
+            gradient.addColorStop(0, "lightcoral");
+            gradient.addColorStop(1, "red");
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(750, 525, 35, 0, Math.PI * 2, true);
+            ctx.fill();
+            ctx.closePath();
+
+            //press button exact # of times
+            var M1 = false;
+            var M2 = false;
+            var M3 = false;
+
+            function checkPos(e) {
+                var posX = e.clientX;
+                var posY = e.clientY;
+                if (posX >= 710 && posX <= 790 && posY >= 485 && posY <= 565) {
+                    num3Clicked += 1;
+                    if (num3Clicked == 2) {
+                        ctx.drawImage(stopFrack, 600, 150);
+                        M3 = true;
+                    }
+                    else if (num3Clicked > 2) {
+                        M3 = false;
+                        ctx.drawImage(frack, 600, 150);
+                        ctx.drawImage(cross, 650, 250);
+                        won = false;
+                    }
+                }
+                if (posX >= 410 && posX <= 490 && posY >= 485 && posY <= 565) {
+                    num2Clicked += 1;
+                    if (num2Clicked == 5 ) 
+                    {
+                        M2 = true;
+                        ctx.drawImage(stopFrack, 300, 150);
+                    }
+                    else if (num2Clicked > 5)
+                    {
+                        M2 = false;
+                        ctx.drawImage(frack, 300, 150);
+                        ctx.drawImage(cross, 350, 250);
+                        won = false;
+                    }
+                }
+                if (posX >= 110 && posX <= 190 && posY >= 485 && posY <= 565) {
+                    num1Clicked += 1;
+                    if (num1Clicked == 3 ) 
+                    {
+                        M1 = true;
+                        ctx.drawImage(stopFrack, 0, 150);
+                    }
+                    else if (num1Clicked > 3)
+                    {
+                        M1 = false;
+                        ctx.drawImage(frack, 0, 150);
+                        ctx.drawImage(cross, 50, 250);
+                        won = false;
+                    }
+                }
+                if(M1 && (M2 && M3))
+            {
+                won = true;
+                var newScore = localStorage.getItem('points');
+            newScore = parseInt(newScore);
+            newScore += 100;
+            localStorage.setItem('points', newScore); 
+                window.location.replace("file:///Users/loaner/Desktop/SaveRenewable.html");  
+            }
+            }
+            c.addEventListener('click', checkPos, true);
+
+        </script>
+        
+        <div id='timer' style='position:absolute; top:550px; left:850px; z-index:1; font-size:30px' /><script type="text/javascript">window.onload = CreateTimer("timer", numberOfSeconds);</script>
+    </body>
+</html>

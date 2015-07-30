@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Save Dave - Turn off the Smokestacks</title>
+    <link rel="stylesheet" type="text/css" href="JasmineCSS.css">
+    </head>
+    <body>  
+        <div class="container" position:relative >
+            <canvas id="myCanvas" width="900" height="600" style="border:1px solid #FFFFFF " >
+            </canvas>
+            <canvas id="cloud" width = "900" height="600" style = "border:1px solid #FFFFFF" >             </canvas>
+            <canvas id="person" width = "900" height="600" style = "border:1px solid #FFFFFF" >             </canvas>
+        </div>
+        <script> 
+        var c = document.getElementById('myCanvas');
+        var ctx = c.getContext('2d');
+        var win = false;
+            
+                        var Timer;
+            var TotalSeconds;
+            var TimeStr = LeadingZero(TotalSeconds);
+            
+             var numberOfSeconds;
+            
+            if(parseInt(localStorage.getItem('points')) < 300){
+                numberOfSeconds = 20;   
+            }
+            
+            else if(parseInt(localStorage.getItem('points')) >= 300 && parseInt(localStorage.getItem('points')) < 600 ){
+                numberOfSeconds = 15;   
+            }
+
+            else if(parseInt(localStorage.getItem('points')) >= 600 && parseInt(localStorage.getItem('points')) < 900 ){
+                numberOfSeconds = 10;   
+            }
+            
+            else if(parseInt(localStorage.getItem('points')) >= 900){
+                numberOfSeconds = 5;   
+            }
+
+        function CreateTimer(TimerID, Time) {
+            Timer = document.getElementById(TimerID);
+            TotalSeconds = Time;
+            UpdateTimer()
+            window.setTimeout("Tick()", 1000);
+        }
+
+        function Tick() {
+            TotalSeconds -= 1;
+            UpdateTimer()
+            window.setTimeout("Tick()", 1000);
+        }
+           
+        function UpdateTimer() {
+            Timer.innerHTML = TotalSeconds;
+            if(TotalSeconds == 0){
+                window.location.replace("file:///Users/loaner/Desktop/death.html");    
+            }
+        }
+            
+        function LeadingZero(Time) {
+            return (Time < 10) ? "0" + Time : + Time;
+        }
+        ctx.fillStyle = "#92F5FF";
+        ctx.fillRect(0, 0, 900, 600);
+        //Draw the smokestacks
+        ctx.fillStyle = "#5C5C5C"
+        ctx.fillRect(80, 500, 100, 100);
+
+        ctx.fillStyle = "#000000"
+        ctx.font = "30px Courier new";
+        ctx.fillText("Click to run and stop the smoke", 160, 50);
+
+        var gradient = ctx.createLinearGradient(50, 575, 100, 575);
+        gradient.addColorStop(0, "silver");
+        gradient.addColorStop(1, "gray");
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.moveTo(50, 575);
+        ctx.lineTo(100, 575);
+        ctx.lineTo(90, 250);
+        ctx.lineTo(60, 250);
+        ctx.fill();
+        ctx.closePath();
+
+        var gradient = ctx.createLinearGradient(150, 575, 200, 575);
+        gradient.addColorStop(0, "silver");
+        gradient.addColorStop(1, "gray");
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.moveTo(150, 575);
+        ctx.lineTo(200, 575);
+        ctx.lineTo(190, 300);
+        ctx.lineTo(160, 300);
+        ctx.fill();
+        ctx.closePath();
+
+        //Create the ground
+        ctx.fillStyle = "#B2FFB2";
+        ctx.beginPath();
+        ctx.bezierCurveTo(900, 525, 700, 500, 500, 600);
+        ctx.fill();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.moveTo(900, 600);
+        ctx.lineTo(900, 525);
+        ctx.lineTo(500, 600);
+        ctx.fill();
+        ctx.closePath();
+
+        ctx.fillStyle = "#9EFF9E";
+        ctx.beginPath();
+        ctx.moveTo(0, 600);
+        ctx.bezierCurveTo(0, 550, 300, 525, 600, 600);
+        ctx.fill();
+        ctx.closePath();
+
+        //Add smoke
+        var s = document.getElementById('cloud');
+        var sctx = s.getContext('2d');
+        var smoke = new Image();
+        var counter = 1;
+        var counter2 = 1;
+        var animate;
+        var cloudTwo = false; 
+        smoke.src = "file://localhost/Users/loaner/Desktop/gray-cloud-md.png";
+        smoke.onload = function () {
+            gameLoop();
+        };
+        function gameLoop() {
+            drawScreen();
+             animate = setTimeout('gameLoop()', 100);
+        }
+        function drawScreen(){
+            sctx.fillStyle = "#92F5FF";
+            sctx.fillRect(85+(counter*15), 150, 200, 125);
+            sctx.drawImage(smoke, 100+(counter*15), 150);
+            counter++;
+            if (100+(counter*15) >= 900)
+                {
+                    counter = 1;
+                }
+            if(100+(counter*15) >= 500)
+            {
+                cloudTwo = true;
+            }
+            if(cloudTwo)
+            {
+                sctx.fillRect(85+(counter2*15), 150, 200, 125);
+                sctx.drawImage(smoke, 100+(counter2*15), 150);
+                counter2++;
+            }
+             if (100+(counter2*15) >= 900)
+                {
+                    counter2 = 1;
+                }   
+
+        }
+
+        //Add Stop sign
+        var stopSign = new Image();
+        stopSign.src = "file://localhost/Users/loaner/Desktop/stop-button-md.png";
+        stopSign.onload = function() {
+            ctx.drawImage(stopSign, 100, 500);
+        }
+
+        //draw the person
+        var f = document.getElementById('person');
+        var fctx = f.getContext('2d');
+       
+        var person = new Image();
+        var counter3 = 1;
+        var animate2
+        
+        
+        person.src = "file://localhost/Users/loaner/Desktop/dT4or4b7c.png";
+        person.onload = function () {
+            fctx.drawImage(person, 800 - (counter3*15), 495);
+        }
+
+        f.addEventListener('click', drawScreen2, true);
+
+        function drawScreen2() {
+            fctx.clearRect(0, 0, 900, 600);
+            fctx.drawImage(person, 800 - (counter3*15), 495);
+            counter3++;
+            if(900-(counter3*15) <= 185)
+            {
+                win = true;
+                clearTimeout(animate);
+                var newScore = localStorage.getItem('points');
+            newScore = parseInt(newScore);
+            newScore += 100;
+            localStorage.setItem('points', newScore); 
+                 window.location.replace("file:///Users/loaner/Desktop/Fracking.html");  
+            }
+        }
+
+
+        </script>
+        
+        <div id='timer' style='position:absolute; top:550px; left:850px; z-index:1; font-size:30px' /><script type="text/javascript">window.onload = CreateTimer("timer", numberOfSeconds);</script>
+    </body>
+</html>

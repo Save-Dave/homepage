@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Save Dave - Choose the Renewable Resources</title>
+    <link rel="stylesheet" type="text/css" href="smokestacks.css">
+    </head>
+    <body>    
+            <canvas id="myCanvas" width="900" height="600" style="border:1px solid #FFFFFF " >
+            </canvas>
+        <script>
+        var c = document.getElementById('myCanvas');
+        var ctx = c.getContext('2d');
+            
+                    var Timer;
+            var TotalSeconds;
+            var TimeStr = LeadingZero(TotalSeconds);
+            
+             var numberOfSeconds;
+            
+            if(parseInt(localStorage.getItem('points')) < 300){
+                numberOfSeconds = 20;   
+            }
+            
+            else if(parseInt(localStorage.getItem('points')) >= 300 && parseInt(localStorage.getItem('points')) < 600 ){
+                numberOfSeconds = 15;   
+            }
+
+            else if(parseInt(localStorage.getItem('points')) >= 600 && parseInt(localStorage.getItem('points')) < 900 ){
+                numberOfSeconds = 10;   
+            }
+            
+            else if(parseInt(localStorage.getItem('points')) >= 900){
+                numberOfSeconds = 5;   
+            }
+
+        function CreateTimer(TimerID, Time) {
+            Timer = document.getElementById(TimerID);
+            TotalSeconds = Time;
+            UpdateTimer()
+            window.setTimeout("Tick()", 1000);
+        }
+
+        function Tick() {
+            TotalSeconds -= 1;
+            UpdateTimer()
+            window.setTimeout("Tick()", 1000);
+        }
+           
+        function UpdateTimer() {
+            Timer.innerHTML = TotalSeconds;
+            if(TotalSeconds == 0){
+                window.location.replace("file:///Users/loaner/Desktop/death.html");    
+            }
+        }
+            
+        function LeadingZero(Time) {
+            return (Time < 10) ? "0" + Time : + Time;
+        }
+
+        ctx.fillStyle = "#92F5FF";
+        ctx.fillRect(0, 0, 900, 600);
+
+        ctx.fillStyle = "#000000"
+        ctx.font = "30px Courier new";
+        ctx.fillText("Click the renewable resources", 200, 50);
+
+        ctx.fillStyle = "#037DC2";
+        ctx.fillRect(0, 450, 600, 300);
+
+        ctx.fillStyle = "#B2FFB2";
+        ctx.beginPath();
+        ctx.bezierCurveTo(900, 500, 600, 100, 175, 600);
+        ctx.fill();
+        ctx.closePath();
+
+        ctx.fillStyle = "#B2FFB2";
+        ctx.beginPath();
+        ctx.bezierCurveTo(900, 350, 600, 300, 450, 400);
+        ctx.fill();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.moveTo(900, 600);
+        ctx.lineTo(900, 350);
+        ctx.lineTo(175, 600);
+        ctx.fill();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.moveTo(780, 400);
+        ctx.lineTo(900, 350);
+        ctx.lineTo(710, 370);
+        ctx.fill();
+        ctx.closePath();
+
+        //insert Images
+        var hydro = new Image();
+        hydro.src = 'file://localhost/Users/loaner/Desktop/unit.jpg';
+        hydro.onload = function () {
+            ctx.drawImage(hydro, 50, 450);
+        }
+
+        var coal = new Image();
+        coal.src = 'file://localhost/Users/loaner/Desktop/coal_med.png';
+        coal.onload = function() {
+            ctx.drawImage(coal, 300, 500);
+        }
+
+        var windmill = new Image();
+        windmill.src = 'file://localhost/Users/loaner/Desktop/wind_farm_230x250_ani.gif';
+        windmill.onload = function (){
+            ctx.drawImage(windmill, 675, 155);
+        }
+
+        var solar = new Image();
+        solar.src = 'file://localhost/Users/loaner/Desktop/solar-panel4.png';
+        solar.onload = function () {
+            ctx.drawImage(solar, 420, 325);
+        }
+
+        var sun = new Image();
+        sun.src = 'file://localhost/Users/loaner/Desktop/sun.png';
+        sun.onload = function (){
+            ctx.drawImage(sun, 50, 75);
+        }
+
+        var oil = new Image();
+        oil.src = 'file:///Users/loaner/Desktop/images.png';
+        oil.onload = function () {
+            ctx.drawImage(oil, 750, 450);
+        }
+
+        var gas = new Image();
+        gas.src = 'file://localhost/Users/loaner/Desktop/natural%20gas.png';
+        gas.onload = function () {
+            ctx.drawImage(gas, 500, 345);
+        }
+
+        // Click on renewable resources
+        c.addEventListener('click', checkPos, true);
+        var check = new Image();
+        check.src = 'file:///Users/loaner/Desktop/Check_mark.png';
+        var cross = new Image();
+        cross.src = 'file:///Users/loaner/Desktop/1024px-Red_x.svg.png';
+        //to count when done
+        var waterClicked = false;
+        var windClicked = false;
+        var solarClicked = false;
+        var won;
+        //to Check if clicked
+        function checkPos (e) {
+            var posX = e.clientX;
+            var posY = e.clientY;
+            //Water check
+            if (posX>=50 && posX <= 175 && posY>=450 && posY<=590)
+            {
+                ctx.drawImage(check, 64, 470);
+                waterClicked = true;
+            }
+            //wind check
+            else if ( posX>=675 && posX<= 875 && posY >= 155 && posY<= 372)
+            {
+                ctx.drawImage(check, 725, 213);
+                windClicked = true;
+            }
+            //solar check
+            else if(posX >= 420 && posX<= 534 && posY >= 325 && posY <= 425)
+            {
+                ctx.drawImage(check, 427, 325);
+                solarClicked = true;
+            }
+            else
+            {
+                won = false;
+                ctx.drawImage(cross, posX-50, posY-50);
+            }
+            
+            if(waterClicked && (solarClicked && windClicked))
+          {
+            won = true;
+              var newScore = localStorage.getItem('points');
+            newScore = parseInt(newScore);
+            newScore += 100;
+            localStorage.setItem('points', newScore); 
+             window.location.replace("file:///Users/loaner/Desktop/TurnOffTheSmokestacks.html");  
+          }
+        }
+        
+        </script>
+        
+        <div id='timer' style='position:absolute; top:550px; left:850px; z-index:1; font-size:30px' /><script type="text/javascript">window.onload = CreateTimer("timer", numberOfSeconds);</script>
+    </body>
+</html>
