@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>Save Dave - Burn On</title>
-        <link rel="stylesheet" type="text/css" href="stack.css">
+        <link rel="stylesheet" type="text/css" href="SLCSS.css">
     </head>
     <body>
         <div class = "container" position: relative>
@@ -258,7 +258,7 @@
             var fire = new Image();
             var counter = 1;
             var animate; 
-            fire.src = 'file:///Users/loaner/Desktop/fire.png';
+            fire.src = 'images/fire.png';
             fire.onload = function () {
                 gameLoop();
             }
@@ -282,12 +282,12 @@
             newScore = parseInt(newScore);
             newScore += 100;
             localStorage.setItem('points', newScore); 
-                  window.location.replace("file:///Users/loaner/Downloads/trees.html");   
+                  window.location.replace("./trees.html");   
                 }
                 
             }
             function end(){
-                window.location.replace("file:///Users/loaner/Desktop/death.html");
+                window.location.replace("./death.html");
             }
             
             
