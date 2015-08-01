@@ -76,12 +76,9 @@
         function LeadingZero(Time) {
             return (Time < 10) ? "0" + Time : + Time;
         }
-      image.fillStyle = "black";
-      image.font = "30px Courier new";
-      image.fillText("Click to clean up the oil spill!",160,70,850); 
-      
+
         var oilback = new Image();
-        oilback.src='images/oilbackground2.jpg';
+        oilback.src='images/oilbackground3.jpg';
         oilback.onload=function(){
             image.drawImage(oilback,0,0);
         }
