@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-     <link rel="stylesheet" type="text/css" href="SLCSS.css">
+     <!--<link rel="stylesheet" type="text/css" href="SLCSS.css">-->
 
 <!--        <canvas id="firstcanvas" width="900" height="600" style="border:1px solid #c3c3c3;"> -->
         <canvas id="myCanvas" width="900" height="600" style="border:1px solid ##2B65EC;">
@@ -67,7 +67,7 @@
         function UpdateTimer() {
             Timer.innerHTML = TotalSeconds;
             if(TotalSeconds == 0){
-                window.location.replace("file:///Users/loaner/Desktop/death.html");    
+                window.location.replace("./death.html");    
             }
         }
             
@@ -178,10 +178,9 @@
                 
         }
         
-    }
-
+     }
         </script>
-        
         <div id='timer' style='position:absolute; top:550px; left:850px; z-index:1; font-size:30px' /><script type="text/javascript">window.onload = CreateTimer("timer", numberOfSeconds);</script>
         </body>
 </html>
+
