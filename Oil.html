@@ -5,7 +5,6 @@
 
 <!--        <canvas id="firstcanvas" width="900" height="600" style="border:1px solid #c3c3c3;"> -->
         <canvas id="myCanvas" width="900" height="600" style="border:1px solid ##2B65EC;">
-         <canvas id="myCanvas2" width="900" height="600" style="border:1px solid ##2B65EC;">
              
 </canvas>
 
@@ -13,15 +12,9 @@
     <body>
 
     <script>
-//        var first = document.getElementById("firstcanvas");
-        
+
           var c = document.getElementById("myCanvas");
-          var a = document.getElementById("myCanvas2");
-       
-//        var firstimage = first.getContext("2d");
-     
-            var image=c.getContext("2d");
-            var image2=a.getContext("2d");
+           var image=c.getContext("2d");
         
         
         var score = 0;
@@ -190,6 +183,9 @@
         </script>
         
         <div id='timer' style='position:absolute; top:550px; left:850px; z-index:1; font-size:30px' /><script type="text/javascript">window.onload = CreateTimer("timer", numberOfSeconds);</script>
-
+<div class="outerbox">
+ <img src="images/oilbackground2.jpg" alt="cat" width="900" height="600">
+ <div class="innerbox">Click to Clean up the oil spill</div>
+</div>
         </body>
 </html>
