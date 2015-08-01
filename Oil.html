@@ -80,7 +80,7 @@
       image.font = "30px Courier new";
       image.fillText("Click to clean up the oil spill!",160,70,850); 
       
- var oilback = new Image();
+        var oilback = new Image();
         oilback.src='images/oilbackground2.jpg';
         oilback.onload=function(){
             image.drawImage(oilback,0,0);
@@ -94,7 +94,17 @@
         // oil.onload=function(){
         //     image.drawImage(oil,70,90);
         // }
+        var plants = new Image();
+        plants.src='images/plants.jpg';
+        plants.onload=function(){
+            image.drawImage(plants,10,600);
+        }
         
+         var starfish = new Image();
+        starfish.src='images/starfish.jpg';
+        starfish.onload=function(){
+            image.drawImage(starfish,850,600);
+        }
       
        
         
@@ -104,12 +114,14 @@
 	       var mouseY = e.clientY; 
 
         if(mouseX>=0 && mouseX<=100){
-            image.fillStyle="#2B65EC";
+            image.fillStyle="#86C7DD";
             image.fillRect(0,0,100,600);
             image.fillStyle = "black";
             image.font = "30px Courier new";
             image.fillText("Click to clean up the oil spill!",160,70,850);
             one = 1;
+            image.drawImage(plants,10,600);
+            image.drawImage(starfish,850,600);
         }
         
         if(mouseX>=100 && mouseX<=200){
@@ -119,6 +131,8 @@
             image.font = "30px Courier new";
             image.fillText("Click to clean up the oil spill!",160,70,850);
             two = 1;
+            image.drawImage(plants,10,600);
+            image.drawImage(starfish,850,600);
         }
         if(mouseX>=200 && mouseX<=300){
             image.fillStyle="#86C7DD";
@@ -127,14 +141,18 @@
             image.font = "30px Courier new";
             image.fillText("Click to clean up the oil spill!",160,70,850);
             three = 1;
+            image.drawImage(plants,10,600);
+            image.drawImage(starfish,850,600);
         }
         if(mouseX>=300 && mouseX<=400){
-            image.fillStyle="##86C7DD";
+            image.fillStyle="#86C7DD";
             image.fillRect(300,0,100,600);
             image.fillStyle = "black";
             image.font = "30px Courier new";
             image.fillText("Click to clean up the oil spill!",160,70,850);
             four = 1;
+            image.drawImage(plants,10,600);
+            image.drawImage(starfish,850,600);
         }
         if(mouseX>=400 && mouseX<=500){
             image.fillStyle="#86C7DD";
@@ -143,6 +161,8 @@
             image.font = "30px Courier new";
             image.fillText("Click to clean up the oil spill!",160,70,850);
             five = 1;
+            image.drawImage(plants,10,600);
+            image.drawImage(starfish,850,600);
         }
         
         if(mouseX>=500 && mouseX<=600){
@@ -152,6 +172,8 @@
             image.font = "30px Courier new";
             image.fillText("Click to clean up the oil spill!",160,70,850);
             six = 1;
+            image.drawImage(plants,10,600);
+            image.drawImage(starfish,850,600);
         }
         
         if(mouseX>=600 && mouseX<=700){
@@ -161,6 +183,8 @@
             image.font = "30px Courier new";
             image.fillText("Click to clean up the oil spill!",160,70,850);
             seven = 1;
+            image.drawImage(plants,10,600);
+            image.drawImage(starfish,850,600);
         }
         
         if(mouseX>=700 && mouseX<=800){
@@ -170,6 +194,8 @@
             image.font = "30px Courier new";
             image.fillText("Click to clean up the oil spill!",160,70,850);
             eight = 1;
+            image.drawImage(plants,10,600);
+            image.drawImage(starfish,850,600);
         }
         
         if(mouseX>=800 && mouseX<=900){
@@ -179,6 +205,8 @@
             image.font = "30px Courier new";
             image.fillText("Click to clean up the oil spill!",160,70,850); 
             nine = 1;
+            image.drawImage(plants,10,600);
+            image.drawImage(starfish,850,600);
         }
         
         if(one == 1 && two == 1 && three == 1 && four == 1 && five == 1 && six == 1 && seven == 1 && eight == 1 && nine == 1 ){
