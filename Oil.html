@@ -84,18 +84,9 @@
             image.drawImage(oilback,0,0);
         }
         
-        image.fillStyle = "black";
+      image.fillStyle = "black";
       image.font = "30px Courier new";
       image.fillText("Click to clean up the oil spill!",160,70,850); 
-      //image.fillStyle="#2B65EC";
-      //image.fillRect(0,0,900,600);
-   
-    
-        // var oil = new Image();
-        // oil.src='images/oilspill.png';
-        // oil.onload=function(){
-        //     image.drawImage(oil,70,90);
-        // }
       
         c.addEventListener("click",getClickPosition,false);
            function getClickPosition(e) {
@@ -155,7 +146,7 @@
         
         if(mouseX>=600 && mouseX<=700){
             image.fillStyle="#86C7DD";
-            image.fillRect(600,150,100,400);
+            image.fillRect(600,150,100,350);
             image.fillStyle = "black";
             image.font = "30px Courier new";
             image.fillText("Click to clean up the oil spill!",160,70,850);
@@ -164,7 +155,7 @@
         
         if(mouseX>=700 && mouseX<=800){
             image.fillStyle="#86C7DD";
-            image.fillRect(700,150,100,400);
+            image.fillRect(700,150,100,350);
             image.fillStyle = "black";
             image.font = "30px Courier new";
             image.fillText("Click to clean up the oil spill!",160,70,850);
@@ -173,7 +164,7 @@
         
         if(mouseX>=800 && mouseX<=900){
             image.fillStyle="#86C7DD";
-            image.fillRect(800,150,100,400);
+            image.fillRect(800,150,100,350);
             image.fillStyle = "black";
             image.font = "30px Courier new";
             image.fillText("Click to clean up the oil spill!",160,70,850); 
