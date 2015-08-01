@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-<!--        <link rel="stylesheet" type="text/css" href="stack.css">-->
+     <link rel="stylesheet" type="text/css" href="SLCSS.css">
 
 <!--        <canvas id="firstcanvas" width="900" height="600" style="border:1px solid #c3c3c3;"> -->
         <canvas id="myCanvas" width="900" height="600" style="border:1px solid ##2B65EC;">
+         <canvas id="myCanvas2" width="900" height="600" style="border:1px solid ##2B65EC;">
              
 </canvas>
 
@@ -13,10 +14,12 @@
 
     <script>
 //        var first = document.getElementById("firstcanvas");
-        var c = document.getElementById("myCanvas");
+        var a = document.getElementById("myCanvas2");
+          var c = document.getElementById("myCanvas");
        
 //        var firstimage = first.getContext("2d");
-        var image=c.getContext("2d");
+        var image2=a.getContext("2d");
+            var image=c.getContext("2d");
         
         
         var score = 0;
@@ -83,9 +86,9 @@
             image.drawImage(oilback,0,0);
         }
         
-      image.fillStyle = "black";
-      image.font = "30px Courier new";
-      image.fillText("Click to clean up the oil spill!",160,70,850); 
+      image2.fillStyle = "black";
+      image2.font = "30px Courier new";
+      image2.fillText("Click to clean up the oil spill!",160,70,850); 
       
         c.addEventListener("click",getClickPosition,false);
            function getClickPosition(e) {
