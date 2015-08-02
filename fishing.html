@@ -13,8 +13,11 @@
             <canvas id = "f4Canvas" width = "900" height = "600" style = "border:1px solid #D2B48C;"></canvas>
             <canvas id = "f5Canvas" width = "900" height = "600" style = "border:1px solid #D2B48C;"></canvas>
             <canvas id = "f6Canvas" width = "900" height = "600" style = "border:1px solid #D2B48C;"></canvas>
+            <canvas id = "netCanvas" width = "900" height = "600" style = "border:1px solid #D2B48C;"></canvas>
         </div>
         <script>
+             var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
             var f1 = document.getElementById("f1Canvas");
             var f1ctx = f1.getContext("2d");
             var f2 = document.getElementById("f2Canvas");
@@ -27,8 +30,9 @@
             var f5ctx = f5.getContext("2d");
             var f6 = document.getElementById("f6Canvas");
             var f6ctx = f6.getContext("2d");
-            var c = document.getElementById("myCanvas");
-            var ctx = c.getContext("2d");
+             var n = document.getElementById("netCanvas");
+            var netctx = n.getContext("2d");
+           
             
             var Timer;
             var TotalSeconds;
@@ -82,12 +86,6 @@
             
         }
             
-        
-
-            
-            var grd = ctx.createLinearGradient(0,0,0,600);
-            grd.addColorStop(0,"#99b2ff");
-            grd.addColorStop(1,"#2447b2");
             
             ctx.fillStyle = grd;
             ctx.fillRect(0,0,900,600);
@@ -104,6 +102,13 @@
             background.onload = function () {
                 ctx.drawImage(background,0,0);
             }
+            
+            //text
+            ctx.fillStyle = "#000000";
+            ctx.font = "30px Courier new";
+            ctx.fillText("Click sea creatures to cut them out of", 100, 80);
+            ctx.fillText("the net, and stop overfishing.", 180, 120);
+            
             //net
             //var net = new Image();
             //net.src = 'images/net.png';
@@ -151,8 +156,9 @@
              var net = new Image();
             net.src = 'images/net.png';
             net.onload = function () {
-                ctx.drawImage(net, 150, 100);
+                netctx.drawImage(net, 150, 100);
             }
+            
             var removed = 0;
             f6.addEventListener("click", free, true);
             
