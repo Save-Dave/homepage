@@ -98,12 +98,18 @@
             ctx.fillText("Click sea creatures to cut them out of", 100, 80);
             ctx.fillText("the net, and stop overfishing.", 180, 120);
             
-            //net
-            var net = new Image();
-            net.src = 'images/net.png';
-            net.onload = function () {
-                ctx.drawImage(net, 150, 100);
+            //background
+            var background = new Image();
+            background.src = 'images/fishingbackground.jpg';
+            background.onload = function () {
+                ctx.drawImage(background,0,0);
             }
+            //net
+            //var net = new Image();
+            //net.src = 'images/net.png';
+            //net.onload = function () {
+            //    ctx.drawImage(net, 150, 100);
+            //}
             
             //fish
             var fish1 = new Image();
@@ -131,17 +137,22 @@
             }
             
             var fish5 = new Image();
-            fish5.src = 'images/fish5.png';
+            fish5.src = 'images/crab.jpg';
             fish5.onload = function () {
                 f5ctx.drawImage(fish5, 600, 400);
             }
             
             var fish6 = new Image();
-            fish6.src = 'images/fish7.png';
+            fish6.src = 'images/pufferfish.jpg';
             fish6.onload = function () {
                 f6ctx.drawImage(fish6, 450, 450);
             }
             
+             var net = new Image();
+            net.src = 'images/net.png';
+            net.onload = function () {
+                ctx.drawImage(net, 150, 100);
+            }
             var removed = 0;
             f6.addEventListener("click", free, true);
             
