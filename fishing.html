@@ -13,10 +13,10 @@
             <canvas id = "f4Canvas" width = "900" height = "600" style = "border:1px solid #D2B48C;"></canvas>
             <canvas id = "f5Canvas" width = "900" height = "600" style = "border:1px solid #D2B48C;"></canvas>
             <canvas id = "f6Canvas" width = "900" height = "600" style = "border:1px solid #D2B48C;"></canvas>
-            <canvas id = "netCanvas" width = "900" height = "600" style = "border:1px solid #D2B48C;"></canvas>
+            <canvas id = "netCanvas" width = "900" height = "600" style = "border:1px;"></canvas>
         </div>
         <script>
-             var c = document.getElementById("myCanvas");
+            var c = document.getElementById("myCanvas");
             var ctx = c.getContext("2d");
             var f1 = document.getElementById("f1Canvas");
             var f1ctx = f1.getContext("2d");
@@ -30,7 +30,7 @@
             var f5ctx = f5.getContext("2d");
             var f6 = document.getElementById("f6Canvas");
             var f6ctx = f6.getContext("2d");
-             var n = document.getElementById("netCanvas");
+            var n = document.getElementById("netCanvas");
             var netctx = n.getContext("2d");
            
             
@@ -160,7 +160,7 @@
             }
             
             var removed = 0;
-            f6.addEventListener("click", free, true);
+            n.addEventListener("click", free, true);
             
             function free(e){
 	            var mouseX = e.clientX;
