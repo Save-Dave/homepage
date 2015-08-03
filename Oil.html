@@ -74,15 +74,15 @@
         function LeadingZero(Time) {
             return (Time < 10) ? "0" + Time : + Time;
         }
-        var oilback = new Image();
-        oilback.src='images/oilbackground2.jpg';
-        oilback.onload=function(){
-            image.drawImage(oilback,0,0);
-        }
+        // var oilback = new Image();
+        // oilback.src='images/oilbackground2.jpg';
+        // oilback.onload=function(){
+        //     image.drawImage(oilback,0,0);
+        // }
         
-      image.fillStyle = "black";
-      image.font = "30px Courier new";
-      image.fillText("Click to clean up the oil spill!",160,70,850); 
+      //image.fillStyle = "black";
+      //image.font = "30px Courier new";
+      //image.fillText("Click to clean up the oil spill!",160,70,850); 
       
         c.addEventListener("click",getClickPosition,false);
            function getClickPosition(e) {
@@ -180,6 +180,10 @@
         </script>
         
         <div id='timer' style='position:absolute; top:550px; left:850px; z-index:1; font-size:30px' /><script type="text/javascript">window.onload = CreateTimer("timer", numberOfSeconds);</script>
+         <div id = 'background' style = "position: absolute; top:0px;left:0px; z-index:1">
+            <img src = "images/oilbackground2.jpg"> 
+        </div>
+        <div id='text' style="position: absolute; top:0px;left:0px; z-index:2">Click to clean up the oil spill!</div>
 
         </body>
 </html>
