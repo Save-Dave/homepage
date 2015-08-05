@@ -74,7 +74,7 @@
     var faucet2=new Image();
     faucet2.src='images/blue-water-drop-hi.png'
     faucet2.onload = function() {
-    image.drawImage(faucet2,400,500);
+    image.drawImage(faucet2,500,400);
         gameLoop();
     }
     
@@ -88,7 +88,7 @@
     function getClickPosition(e) {
         var mouseX = e.clientX;
 	    var mouseY = e.clientY; 
-        if (mouseX>=700 && mouseX<=800 && mouseY>=420 && mouseY<=470) {
+        if (mouseX>=800 && mouseX<=900 && mouseY>=420 && mouseY<=470) {
             clearTimeout(animate);
             image.drawImage(faucet, 0,0);
             addPoints();
