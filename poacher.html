@@ -70,16 +70,16 @@
             // ctx.fillRect(0,0,900,600);
             
             //text
-            ctx.fillStyle = "#000000";
-            ctx.font = "30px Courier new";
-            ctx.fillText("Click to help the elephant run", 190, 80);
-            ctx.fillText("from the poacher.", 330, 120);
+            ectx.fillStyle = "#000000";
+            ectx.font = "30px Courier new";
+            ectx.fillText("Click to help the elephant run", 190, 80);
+            ectx.fillText("from the poacher.", 330, 120);
             
             
-                    var pback = new Image();
+        var pback = new Image();
         pback.src='images/poachingbackground.jpg';
         pback.onload=function(){
-            image.drawImage(pback,0,0);
+            ctx.drawImage(pback,0,0);
         }
             // //sun
             // ctx.fillStyle = "#ffa319";
