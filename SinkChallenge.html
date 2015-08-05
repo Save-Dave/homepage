@@ -88,7 +88,7 @@
     function getClickPosition(e) {
         var mouseX = e.clientX;
 	    var mouseY = e.clientY; 
-        if (mouseX>=800 && mouseX<=900 && mouseY>=420 && mouseY<=470) {
+        if (mouseX>=700 && mouseX<=900 && mouseY>=300 && mouseY<=400) {
             clearTimeout(animate);
             image.drawImage(faucet, 0,0);
             addPoints();
@@ -110,7 +110,7 @@
     function drawScreen(){
         //background
     image.drawImage(faucet, 0,0);
-    image.drawImage(faucet2,800,250+counter);
+    image.drawImage(faucet2,700,250+counter);
         if(counter>200)
         {
             counter = 0;
